@@ -1,3 +1,13 @@
 {
-  "recommendations": ["Vue.volar"]
+	"recommendations": [
+		"Vue.volar",
+		"Vue.vscode-typescript-vue-plugin",
+		"stylelint.vscode-stylelint",
+		"dbaeumer.vscode-eslint",
+		"editorconfig.editorconfig",
+		"esbenp.prettier-vscode",
+		"aaron-bond.better-comments",
+		"mikestead.dotenv",
+		"Gruntfuggly.todo-tree"
+	]
 }
