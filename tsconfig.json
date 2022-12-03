@@ -1,18 +1,26 @@
 {
-  "compilerOptions": {
-    "target": "ESNext",
-    "useDefineForClassFields": true,
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "strict": true,
-    "jsx": "preserve",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "esModuleInterop": true,
-    "lib": ["ESNext", "DOM"],
-    "skipLibCheck": true,
-    "noEmit": true
-  },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+	"compilerOptions": {
+		"target": "ESNext",
+		"useDefineForClassFields": true, // This flag switches to the upcoming ECMA runtime behavior.
+		"module": "ESNext", // 输出模块
+		"moduleResolution": "Node", // 模块解析策略
+		"strict": true,
+		"jsx": "preserve",
+		"resolveJsonModule": true, // 允许引入 JSON 文件
+		"isolatedModules": true, // 是否将每个文件视为单独模块
+		"esModuleInterop": true, // 支持 import d from 'cjs'，默认开启allowSyntheticDefaultImports
+		"lib": ["ESNext", "DOM"],
+		"skipLibCheck": true, // 跳过第三方库检查，解决打包失败
+		// "noEmit": true // 命令行中添加
+		"baseUrl": "./", // 解析非相对模块名的基准目录
+		// 模块名到基于 baseUrl 的路径映射的列表。
+		"paths": {
+			"@": ["src"],
+			"@/*": ["src/*"]
+		},
+		"types": ["element-plus/global"]
+	},
+	"include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "types/**/*.d.ts", "types/**/*.ts", "mock/**/*.ts"],
+	"exclude": ["node_modules", "dist", "**/*.js"],
+	"references": [{ "path": "./tsconfig.node.json" }] // TS3新增功能：项目引用。允许用户为项目的不同部分使用不同的 TypeScript 配置。
 }

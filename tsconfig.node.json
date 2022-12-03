@@ -1,9 +1,11 @@
 {
-  "compilerOptions": {
-    "composite": true,
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "allowSyntheticDefaultImports": true
-  },
-  "include": ["vite.config.ts"]
+	// 针对仅运行在node环境的文件配置
+	"compilerOptions": {
+		"composite": true, // 对于引用项目必须设置该属性
+		"module": "ESNext",
+		"moduleResolution": "Node",
+		"allowSyntheticDefaultImports": true,
+		"types": ["vite-plugin-svg-icons/client"]
+	},
+	"include": ["vite.config.ts", "build/**/*.ts", "build/**/*.d.ts", "types/**/*.d.ts", "types/**/*.ts"]
 }
