@@ -1,15 +1,21 @@
 import { createApp } from 'vue';
-import './style.css';
 import App from './App.vue';
+// reset style sheet
+import '@/style/reset.scss';
+// svg 组件
 import SvgIcon from '@/components/SvgIcon/index.vue';
+// Element Plus
 import ElementPlus from 'element-plus';
 import 'element-plus/dist/index.css';
+// store
+import pinia from '@/store/index';
 
 const app = createApp(App);
 
-// svg组件
 app.component('SvgIcon', SvgIcon);
-// Element
+
 app.use(ElementPlus);
+
+app.use(pinia);
 
 app.mount('#app');
