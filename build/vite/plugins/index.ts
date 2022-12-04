@@ -7,15 +7,10 @@ import EslintPlugin from 'vite-plugin-eslint';
 import { configHtmlPlugin } from './html';
 import { configVisualizerPlugin } from './visualizer';
 import { configSvgPlugin } from './svg';
+import { configCompressPlugin } from './compress';
 
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
-	const {
-		VITE_LEGACY
-		// VITE_USE_IMAGEMIN,
-		// VITE_USE_MOCK,
-		// VITE_BUILD_COMPRESS,
-		// VITE_BUILD_COMPRESS_DELETE_ORIGIN_FILE,
-	} = viteEnv;
+	const { VITE_LEGACY, VITE_BUILD_COMPRESS, VITE_BUILD_COMPRESS_DELETE_ORIGIN_FILE } = viteEnv;
 
 	const vitePlugins: (PluginOption | PluginOption[])[] = [
 		vue(), // *vue 必须
@@ -32,6 +27,11 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
 	vitePlugins.push(configSvgPlugin(isBuild));
 	// rollup-plugin-visualizer
 	vitePlugins.push(configVisualizerPlugin());
+
+	if (isBuild) {
+		// rollup-plugin-gzip
+		vitePlugins.push(configCompressPlugin(VITE_BUILD_COMPRESS, VITE_BUILD_COMPRESS_DELETE_ORIGIN_FILE));
+	}
 
 	return vitePlugins;
 }

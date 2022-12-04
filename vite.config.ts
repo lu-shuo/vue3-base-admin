@@ -3,8 +3,9 @@ import type { ConfigEnv, UserConfig } from 'vite';
 import { wrapperEnv, pathResolve } from './build/utils';
 import { createProxy } from './build/vite/proxy';
 import { createVitePlugins } from './build/vite/plugins';
+import { BUILD_TARGET, OUTPUT_DIR } from './build/config';
 
-// https://vitejs.dev/config/
+// https://cn.vitejs.dev/config/
 export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
 	const root = process.cwd();
 	const isBuild = command === 'build';
@@ -13,7 +14,7 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
 
 	const viteEnv = wrapperEnv(env);
 
-	const { VITE_PUBLIC_PATH, VITE_PORT, VITE_OPEN, VITE_PROXY } = viteEnv;
+	const { VITE_PUBLIC_PATH, VITE_PORT, VITE_OPEN, VITE_PROXY, VITE_DROP_CONSOLE } = viteEnv;
 
 	return {
 		// *共享选项
@@ -36,6 +37,9 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
 			}
 		},
 		plugins: createVitePlugins(viteEnv, isBuild),
+		esbuild: {
+			pure: VITE_DROP_CONSOLE ? ['console.log', 'debugger'] : []
+		},
 		// *服务器选项
 		server: {
 			// 服务器主机名，如果允许外部访问，可设置为 "0.0.0.0" / true
@@ -45,6 +49,21 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
 			cors: true, // 默认启用
 			// 自定义代理规则
 			proxy: createProxy(VITE_PROXY)
+		},
+		// 构建选项
+		build: {
+			target: BUILD_TARGET,
+			outDir: OUTPUT_DIR,
+			minify: 'esbuild',
+			chunkSizeWarningLimit: 1500, // 触发警告的 chunk 大小 kbs
+			rollupOptions: {
+				output: {
+					// Static resource classification and packaging
+					chunkFileNames: 'assets/js/[name]-[hash].js',
+					entryFileNames: 'assets/js/[name]-[hash].js',
+					assetFileNames: 'assets/[ext]/[name]-[hash].[ext]'
+				}
+			}
 		}
 	};
 });

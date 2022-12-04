@@ -14,7 +14,7 @@
 		"lint:lint-staged": "lint-staged",
 		"prepare": "husky install",
 		"release": "standard-version",
-		"commit": "git pull && git add -A && git-cz && git push"
+		"commit": "git pull && git-cz && git push"
 	},
 	"dependencies": {
 		"element-plus": "^2.2.26",
@@ -56,6 +56,7 @@
 		"terser": "^5.16.1",
 		"typescript": "^4.9.3",
 		"vite": "^3.2.4",
+		"vite-plugin-compression": "^0.5.1",
 		"vite-plugin-eslint": "^1.8.1",
 		"vite-plugin-html": "^3.2.0",
 		"vite-plugin-svg-icons": "^2.0.1",
