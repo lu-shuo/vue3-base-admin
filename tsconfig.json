@@ -15,8 +15,8 @@
 		"baseUrl": "./", // 解析非相对模块名的基准目录
 		// 模块名到基于 baseUrl 的路径映射的列表。
 		"paths": {
-			"@": ["src"],
-			"@/*": ["src/*"]
+			"@/*": ["src/*"],
+			"#/*": ["types/*"]
 		},
 		"types": ["element-plus/global"]
 	},

@@ -17,6 +17,7 @@
 		"commit": "git pull && git-cz && git push"
 	},
 	"dependencies": {
+		"axios": "^1.2.0",
 		"element-plus": "^2.2.26",
 		"mitt": "^3.0.0",
 		"pinia": "^2.0.27",
