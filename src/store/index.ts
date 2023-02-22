@@ -1,4 +1,15 @@
-import { createPinia } from 'pinia';
+import { createPinia, defineStore } from 'pinia';
+
+export const useGlobalStore = defineStore('globalStore', {
+	state: () => ({
+		// token
+		token: '',
+		// userInfo
+		userInfo: '',
+		// language
+		language: ''
+	})
+});
 
 const pinia = createPinia();
 

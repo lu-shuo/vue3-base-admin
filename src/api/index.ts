@@ -1,10 +1,11 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
-import { BASE_URL, TIMEOUT } from '@/config/axiosConfig';
+import { TIMEOUT } from '@/config/axiosConfig';
 import type { Result } from '#/axios';
+import { useGlobalStore } from '@/store';
 
 const config = {
 	// 默认请求地址，可配置
-	baseURL: BASE_URL,
+	baseURL: import.meta.env.VITE_API_URL,
 	// 超时时间，可配置
 	timeout: TIMEOUT,
 	// 跨域时候允许携带凭证
@@ -23,9 +24,12 @@ class HttpRequest {
 		 */
 		this.axiosInstance.interceptors.request.use(
 			(config: AxiosRequestConfig) => {
+				// TODO:header配置中添加noLoading控制是否显示loading栏
+
 				// TODO: token鉴权及token请求携带
-				// const token = '';
-				return config;
+				const globalStore = useGlobalStore();
+				const token = globalStore.token;
+				return { ...config, headers: { ...config.headers, 'x-access-token': token } };
 			},
 			(error: AxiosError) => {
 				return Promise.reject(error);
