@@ -5,6 +5,7 @@
 	"author": "lushuo <lushuo_code@163.com>",
 	"scripts": {
 		"dev": "vite",
+		"start": "vite",
 		"build": "vue-tsc --noEmit && vite build",
 		"report": "cross-env REPORT=true pnpm run build",
 		"preview": "vite preview",
