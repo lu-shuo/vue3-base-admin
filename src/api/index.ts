@@ -17,16 +17,16 @@ const config = {
 };
 
 class HttpRequest {
-	private axiosInstance: AxiosInstance;
+	private service: AxiosInstance;
 
 	constructor(config: AxiosRequestConfig) {
-		this.axiosInstance = axios.create(config);
+		this.service = axios.create(config);
 		/**
 		 * @description 请求拦截器
 		 * 客户端发送请求 -> [请求拦截器] -> 服务器
 		 * token校验(JWT) : 接受服务器返回的token,存储到vuex/pinia/本地储存当中
 		 */
-		this.axiosInstance.interceptors.request.use(
+		this.service.interceptors.request.use(
 			(config: AxiosRequestConfig) => {
 				// TODO:header配置中添加noLoading控制是否显示loading栏
 
@@ -43,7 +43,7 @@ class HttpRequest {
 		 * @description 响应拦截器
 		 *  服务器换返回信息 -> [拦截统一处理] -> 客户端JS获取到信息
 		 */
-		this.axiosInstance.interceptors.response.use(
+		this.service.interceptors.response.use(
 			(response: AxiosResponse) => {
 				// 2xx 范围内的状态码都会触发该函数
 				const { data } = response;
@@ -83,16 +83,16 @@ class HttpRequest {
 	}
 	// * 常用请求方法封装
 	get<T>(url: string, params?: object, _object = {}): Promise<Result<T>> {
-		return this.axiosInstance.get(url, { params, ..._object });
+		return this.service.get(url, { params, ..._object });
 	}
 	post<T>(url: string, params?: object, _object = {}): Promise<Result<T>> {
-		return this.axiosInstance.post(url, params, _object);
+		return this.service.post(url, params, _object);
 	}
 	put<T>(url: string, params?: object, _object = {}): Promise<Result<T>> {
-		return this.axiosInstance.put(url, params, _object);
+		return this.service.put(url, params, _object);
 	}
 	delete<T>(url: string, params?: any, _object = {}): Promise<Result<T>> {
-		return this.axiosInstance.delete(url, { params, ..._object });
+		return this.service.delete(url, { params, ..._object });
 	}
 }
 
