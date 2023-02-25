@@ -1,11 +1,12 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
 import { TIMEOUT } from '@/config/axiosConfig';
+import { showFullScreenLoading, tryHideFullScreenLoading } from '@/config/serviceLoadingConfig';
 import { ResponseCode, Result } from '#/axios';
 import { ElMessage } from 'element-plus';
 import { LOGIN_URL } from '@/config/routerConfig';
 import { checkHttpStatus } from './helper/checkHttpStatus';
-import { useGlobalStore } from '@/store';
-import router from '@/router';
+import { useGlobalStore } from '@/stores';
+import router from '@/routers';
 
 const config = {
 	// 默认请求地址，可配置
@@ -27,13 +28,14 @@ class HttpRequest {
 		 * token校验(JWT) : 接受服务器返回的token,存储到vuex/pinia/本地储存当中
 		 */
 		this.service.interceptors.request.use(
-			(config: AxiosRequestConfig) => {
-				// TODO:header配置中添加noLoading控制是否显示loading栏
-
-				// TODO: token鉴权及token请求携带
+			config => {
+				// * 如果当前请求需要显示全屏 loading,在 api 服务中通过指定的第三个参数: { headers: { loading: true } }
+				config.headers.loading && showFullScreenLoading();
+				// * 携带token鉴权
 				const globalStore = useGlobalStore();
 				const token = globalStore.token;
-				return { ...config, headers: { ...config.headers, 'x-access-token': token } };
+				config.headers.set('x-access-token', token);
+				return config;
 			},
 			(error: AxiosError) => {
 				return Promise.reject(error);
@@ -46,6 +48,7 @@ class HttpRequest {
 		this.service.interceptors.response.use(
 			(response: AxiosResponse) => {
 				// 2xx 范围内的状态码都会触发该函数
+				tryHideFullScreenLoading(); // 请求结束关闭loading
 				const { data } = response;
 				const globalStore = useGlobalStore();
 				// * 登录失效 清空token重新登陆
