@@ -1,0 +1,18 @@
+// 自定义暗黑模式
+html.dark {
+	// * 自定义的暗黑主题内容
+	// login
+	.login-container {
+		background-color: var(--el-fill-color-extra-light) !important;
+		.login-box {
+			background-color: var(--el-mask-color) !important;
+			.login-form {
+				background-color: var(--el-bg-color) !important;
+				box-shadow: 5px 5px 15px rgb(161 161 161 / 20%) !important;
+				.logo-text {
+					color: var(--el-text-color-primary) !important;
+				}
+			}
+		}
+	}
+}

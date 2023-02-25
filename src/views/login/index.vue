@@ -1,6 +1,7 @@
 <template>
 	<div class="login-container flex-center">
 		<div class="login-box flex-justify-around">
+			<SwitchDark class="dark" />
 			<div class="login-left">
 				<img src="@/assets/images/login_left.png" alt="login" />
 			</div>
@@ -14,7 +15,9 @@
 	</div>
 </template>
 
-<script lang="ts" setup name="login"></script>
+<script lang="ts" setup name="login">
+import SwitchDark from '@/components/SwitchDark/index.vue';
+</script>
 
 <style lang="scss" scoped>
 @import './index.scss';
