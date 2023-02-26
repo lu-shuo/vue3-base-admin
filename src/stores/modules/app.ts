@@ -26,6 +26,9 @@ export const useAppStore = defineStore('app', {
 		}
 	}),
 	actions: {
+		setToken(token: string) {
+			this.token = token;
+		},
 		setThemeConfig(themeConfig: ThemeConfigProps) {
 			this.themeConfig = themeConfig;
 		}

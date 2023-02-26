@@ -1,8 +1,7 @@
 export enum ResponseCode {
 	SUCCESS = 200,
 	ERROR = 500,
-	OVERDUE = 401,
-	TIMEOUT = 30000
+	OVERDUE = 401
 }
 
 export interface Result<T = any> {

@@ -10,6 +10,7 @@
 					<img class="login-icon" src="@/assets/images/logo.svg" alt="" />
 					<h2 class="logo-text">Base-Admin</h2>
 				</div>
+				<LoginForm />
 			</div>
 		</div>
 	</div>
@@ -17,6 +18,7 @@
 
 <script lang="ts" setup name="login">
 import SwitchDark from '@/components/SwitchDark/index.vue';
+import LoginForm from './components/LoginForm.vue';
 </script>
 
 <style lang="scss" scoped>

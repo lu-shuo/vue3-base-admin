@@ -1,12 +1,12 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
-import { TIMEOUT } from '@/config/axios';
-import { showFullScreenLoading, tryHideFullScreenLoading } from '@/config/serviceLoading';
 import { ResponseCode, Result } from '#/axios';
-import { ElMessage } from 'element-plus';
+import { showFullScreenLoading, tryHideFullScreenLoading } from '@/config/serviceLoading';
+import { TIMEOUT } from '@/config/axios';
 import { LOGIN_URL } from '@/config/router';
 import { checkHttpStatus } from './helper/checkHttpStatus';
 import { useAppStore } from '@/stores/modules/app';
 import router from '@/routers';
+import { ElMessage } from 'element-plus';
 
 const config = {
 	// 默认请求地址，可配置

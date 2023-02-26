@@ -61,7 +61,6 @@ module.exports = {
 		'no-whitespace-before-property': 2, // 禁止属性前有空白
 		'arrow-spacing': 2, // 强制箭头函数的箭头前后使用一致的空格 默认配置为 { "before": true, "after": true }
 		'space-infix-ops': 2, // 要求操作符周围有空格
-		'no-unused-vars': ['error', { args: 'none' }], // 禁止出现未使用过的变量
 		'no-mixed-spaces-and-tabs': 0, // 禁止空格和 tab 的混合缩进
 		'no-undef': 2, // 禁用未声明的变量，除非它们在 /*global */ 注释中被提到
 		'no-debugger': isDev ? 0 : 2, // 生产模式禁止使用debugger

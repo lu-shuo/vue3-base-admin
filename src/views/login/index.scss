@@ -51,6 +51,31 @@
 					white-space: nowrap;
 				}
 			}
+			.el-form-item {
+				margin-bottom: 40px;
+			}
+			.login-btn {
+				display: flex;
+				justify-content: space-between;
+				width: 100%;
+				margin-top: 40px;
+				white-space: nowrap;
+				.el-button {
+					width: 185px;
+				}
+			}
 		}
+	}
+}
+
+@media screen and (max-width: 1250px) {
+	.login-left {
+		display: none;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.login-form {
+		width: 97% !important;
 	}
 }
