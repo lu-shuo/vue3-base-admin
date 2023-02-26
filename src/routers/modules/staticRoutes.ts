@@ -1,5 +1,5 @@
 import { RouteRecordRaw } from 'vue-router';
-import { HOME_URL, LOGIN_URL } from '@/config/routerConfig';
+import { HOME_URL, LOGIN_URL } from '@/config/router';
 
 /**
  * staticRouter(静态路由)

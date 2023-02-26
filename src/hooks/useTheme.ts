@@ -1,11 +1,11 @@
-import { useGlobalStore } from '@/stores';
+import { useAppStore } from '@/stores/modules/app';
 import { DEFAULT_PRIMARY } from '@/config/themeConfig';
 // import { ElMessage } from 'element-plus';
 import { getLightColor, getDarkColor } from '@/utils/theme/tool';
 
 export const useTheme = () => {
-	const globalStore = useGlobalStore();
-	const themeConfig = globalStore.themeConfig;
+	const appStore = useAppStore();
+	const themeConfig = appStore.themeConfig;
 
 	const switchDark = () => {
 		// documentElement 属性以一个元素对象返回一个文档的文档元素。
@@ -45,7 +45,7 @@ export const useTheme = () => {
 		if (type === 'weak') body.setAttribute('style', 'filter: invert(80%)');
 		// 避免同时开启灰色和色弱模式
 		const propName = type === 'grey' ? 'isWeak' : 'isGrey';
-		globalStore.setThemeConfig({ ...themeConfig, [propName]: false });
+		appStore.setThemeConfig({ ...themeConfig, [propName]: false });
 	};
 
 	// 初始化 theme 配置

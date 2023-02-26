@@ -1,11 +1,11 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
-import { TIMEOUT } from '@/config/axiosConfig';
-import { showFullScreenLoading, tryHideFullScreenLoading } from '@/config/serviceLoadingConfig';
+import { TIMEOUT } from '@/config/axios';
+import { showFullScreenLoading, tryHideFullScreenLoading } from '@/config/serviceLoading';
 import { ResponseCode, Result } from '#/axios';
 import { ElMessage } from 'element-plus';
-import { LOGIN_URL } from '@/config/routerConfig';
+import { LOGIN_URL } from '@/config/router';
 import { checkHttpStatus } from './helper/checkHttpStatus';
-import { useGlobalStore } from '@/stores';
+import { useAppStore } from '@/stores/modules/app';
 import router from '@/routers';
 
 const config = {
@@ -32,8 +32,8 @@ class HttpRequest {
 				// * 如果当前请求需要显示全屏 loading,在 api 服务中通过指定的第三个参数: { headers: { loading: true } }
 				config.headers.loading && showFullScreenLoading();
 				// * 携带token鉴权
-				const globalStore = useGlobalStore();
-				const token = globalStore.token;
+				const appStore = useAppStore();
+				const token = appStore.token;
 				config.headers.set('x-access-token', token);
 				return config;
 			},
@@ -50,11 +50,11 @@ class HttpRequest {
 				// 2xx 范围内的状态码都会触发该函数
 				tryHideFullScreenLoading(); // 请求结束关闭loading
 				const { data } = response;
-				const globalStore = useGlobalStore();
+				const appStore = useAppStore();
 				// * 登录失效 清空token重新登陆
 				if (data.code === ResponseCode.OVERDUE) {
 					ElMessage.error(data.msg);
-					globalStore.token = '';
+					appStore.token = '';
 					router.replace(LOGIN_URL);
 					return Promise.reject(data);
 				}
