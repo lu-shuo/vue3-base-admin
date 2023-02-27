@@ -19,7 +19,7 @@ export const useTheme = () => {
 		}
 	};
 	// 修改主题颜色
-	const changePrimary = (color: string = DEFAULT_PRIMARY) => {
+	const changePrimary = (color: string) => {
 		// ElMessage.success(`主题颜色已经切换为${color}`);
 		themeConfig.primary = color;
 		// 为了兼容暗黑模式下主题颜色也正常，以下方法计算主题颜色 由深到浅 的具体颜色

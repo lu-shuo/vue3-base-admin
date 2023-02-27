@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia';
-import { DEFAULT_PRIMARY } from '@/config/themeConfig';
 import { ThemeConfigProps } from '../interface';
 import piniaPersistConfig from '@/config/piniaPersist';
 
@@ -18,7 +17,7 @@ export const useAppStore = defineStore('app', {
 			// 深色模式
 			isDark: false,
 			// 主题色
-			primary: DEFAULT_PRIMARY,
+			primary: '',
 			// 灰色模式
 			isGrey: false,
 			// 色弱模式

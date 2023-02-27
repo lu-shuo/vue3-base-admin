@@ -32,6 +32,7 @@ import { HOME_URL } from '@/config/router';
 import { useRouter } from 'vue-router';
 import { ElNotification } from 'element-plus';
 import { getTimeState } from '@/utils/utils';
+import { CircleClose, UserFilled } from '@element-plus/icons-vue';
 import md5 from 'js-md5';
 
 const router = useRouter();
@@ -88,4 +89,6 @@ const resetForm = (formEl: FormInstance | undefined) => {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@import '../index.scss';
+</style>

@@ -91,12 +91,14 @@
 			</div>
 		</div>
 		<script>
-			const color = JSON.parse(window.localStorage.getItem('AppState')).themeConfig.primary;
-			const isDark = JSON.parse(window.localStorage.getItem('AppState')).themeConfig.isDark;
-			const dot = document.querySelectorAll('.dot i');
-			const html = document.querySelector('html');
-			dot.forEach(item => (item.style.background = color));
-			if (isDark) html.style.background = '#141414';
+			if (window.localStorage.getItem('AppState')) {
+				const color = JSON.parse(window.localStorage.getItem('AppState')).themeConfig.primary;
+				const isDark = JSON.parse(window.localStorage.getItem('AppState')).themeConfig.isDark;
+				const dot = document.querySelectorAll('.dot i');
+				const html = document.querySelector('html');
+				dot.forEach(item => (item.style.background = color));
+				if (isDark) html.style.background = '#141414';
+			}
 		</script>
 		<script type="module" src="/src/main.ts"></script>
 	</body>

@@ -1,5 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
-import { ResponseCode, Result } from '#/axios';
+import { ResponseCode, Result } from './interface/index';
 import { showFullScreenLoading, tryHideFullScreenLoading } from '@/config/serviceLoading';
 import { TIMEOUT } from '@/config/axios';
 import { LOGIN_URL } from '@/config/router';

@@ -11,7 +11,8 @@ const piniaPersistConfig = (key: string, paths?: string[]) => {
 		key,
 		storage: localStorage,
 		// storage: sessionStorage,
-		paths // Array of dot-notation paths to partially persist state.
+		paths, // Array of dot-notation paths to partially persist state.
+		debug: false
 	};
 	return persist;
 };
