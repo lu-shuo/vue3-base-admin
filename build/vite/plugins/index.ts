@@ -8,6 +8,9 @@ import { configHtmlPlugin } from './html';
 import { configVisualizerPlugin } from './visualizer';
 import { configSvgPlugin } from './svg';
 import { configCompressPlugin } from './compress';
+import Components from 'unplugin-vue-components/vite';
+import AutoImport from 'unplugin-auto-import/vite';
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
 	const { VITE_LEGACY, VITE_BUILD_COMPRESS, VITE_BUILD_COMPRESS_DELETE_ORIGIN_FILE } = viteEnv;
@@ -27,6 +30,24 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
 	vitePlugins.push(configSvgPlugin(isBuild));
 	// rollup-plugin-visualizer
 	vitePlugins.push(configVisualizerPlugin());
+	// 自动按需加载element及自定义组件
+	vitePlugins.push(
+		AutoImport({
+			resolvers: [ElementPlusResolver()]
+		}),
+		Components({
+			// allow auto load markdown components under `./src/components/`
+			extensions: ['vue', 'md'],
+			// allow auto import and register components used in markdown
+			include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
+			resolvers: [
+				ElementPlusResolver({
+					importStyle: 'sass'
+				})
+			],
+			dts: 'src/components.d.ts'
+		})
+	);
 
 	if (isBuild) {
 		// rollup-plugin-gzip
