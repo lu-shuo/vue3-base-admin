@@ -32,7 +32,7 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
 			// 指定传递给 CSS 预处理器的选项。文件扩展名用作选项的键
 			preprocessorOptions: {
 				scss: {
-					additionalData: '@import "@/styles/var.scss";' // 在入口文件起始添加代码
+					additionalData: '@use "@/styles/var.scss" as *;' // 在入口文件起始添加代码
 				}
 			}
 		},

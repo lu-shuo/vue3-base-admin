@@ -1,0 +1,8 @@
+// 自定义暗黑模式变量
+// $--colors: (
+//   "primary": (
+//     "base": #589ef8,
+//   ),
+// );
+// with ($colors: $--colors)
+@forward 'element-plus/theme-chalk/src/dark/var.scss';
