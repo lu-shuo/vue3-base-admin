@@ -31,5 +31,4 @@
 //   $colors: $--colors,
 //   $button-padding-horizontal: ("default": 50px)
 // );
-@forward 'element-plus/theme-chalk/src/common/var.scss';
 @use './dark.scss';

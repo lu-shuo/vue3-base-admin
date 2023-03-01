@@ -31,8 +31,6 @@ import { HOME_URL } from '@/config/router';
 import { getTimeState } from '@/utils/utils';
 import { CircleClose, UserFilled } from '@element-plus/icons-vue';
 import { initDynamicRouter } from '@/routers/modules/dynamicRoutes';
-import { ElNotification } from 'element-plus';
-import { useRouter } from 'vue-router';
 import md5 from 'js-md5';
 
 const router = useRouter();

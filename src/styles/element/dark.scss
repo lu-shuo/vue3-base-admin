@@ -4,5 +4,6 @@
 //     "base": #589ef8,
 //   ),
 // );
-// with ($colors: $--colors)
-@forward 'element-plus/theme-chalk/src/dark/var.scss';
+// @forward "element-plus/theme-chalk/src/dark/var.scss" with (
+//   $colors: $--colors
+// );
