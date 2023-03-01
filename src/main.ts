@@ -10,16 +10,18 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue';
 import pinia from '@/stores/index';
 // vue Router
 import router from '@/routers/index';
+// errorHandler
+import errorHandler from '@/utils/errorHandler';
 
 const app = createApp(App);
+
+app.config.errorHandler = errorHandler;
 
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 	app.component(key, component);
 }
 
 app.component('SvgIcon', SvgIcon);
-
-// app.use(ElementPlus);
 
 app.use(pinia);
 
