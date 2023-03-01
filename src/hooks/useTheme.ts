@@ -1,6 +1,5 @@
 import { useAppStore } from '@/stores/modules/app';
 import { DEFAULT_PRIMARY } from '@/config/themeConfig';
-// import { ElMessage } from 'element-plus';
 import { getLightColor, getDarkColor } from '@/utils/theme/tool';
 
 export const useTheme = () => {

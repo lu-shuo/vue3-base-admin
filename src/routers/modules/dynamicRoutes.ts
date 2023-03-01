@@ -1,7 +1,6 @@
 import router from '@/routers/index';
 import { useAppStore } from '@/stores/modules/app';
 import { useAuthStore } from '@/stores/modules/auth';
-import { ElNotification } from 'element-plus';
 import { LOGIN_URL } from '@/config/router';
 import { getType } from '@/utils/utils';
 
