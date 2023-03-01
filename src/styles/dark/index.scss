@@ -1,6 +1,11 @@
 // 自定义暗黑模式
 html.dark {
 	// * 自定义的暗黑主题内容
+	// * geeker-admin
+	--my-dark-bg-color: #141414;
+	--my-dark-main-bg-color: #0d0d0d;
+	--my-dark-border-light: 1px solid #4c4c4d;
+
 	// login
 	.login-container {
 		background-color: var(--el-fill-color-extra-light) !important;
@@ -13,6 +18,75 @@ html.dark {
 					color: var(--el-text-color-primary) !important;
 				}
 			}
+		}
+	}
+
+	// scroll-bar
+	::-webkit-scrollbar {
+		background-color: var(--el-scrollbar-bg-color) !important;
+	}
+	::-webkit-scrollbar-thumb {
+		background-color: var(--el-border-color-darker) !important;
+	}
+
+	// layout
+	.el-container {
+		.el-aside {
+			background-color: var(--my-dark-bg-color) !important;
+			border-right: var(--my-dark-border-light) !important;
+			.logo {
+				border-bottom: var(--my-dark-border-light) !important;
+			}
+		}
+		.not-aside {
+			border-right: none !important;
+		}
+		.el-header {
+			background-color: var(--my-dark-bg-color) !important;
+			border-bottom-color: var(--el-border-color-light) !important;
+		}
+		.el-main {
+			background-color: var(--my-dark-main-bg-color) !important;
+			.card {
+				background-color: var(--my-dark-bg-color) !important;
+			}
+		}
+		.el-tabs {
+			background-color: var(--my-dark-bg-color) !important;
+		}
+		.el-footer {
+			.footer {
+				background-color: var(--my-dark-bg-color) !important;
+				border-top-color: var(--el-border-color-light) !important;
+				a {
+					color: var(--el-text-color-regular) !important;
+				}
+			}
+		}
+	}
+
+	// menu
+	.el-menu,
+	.el-sub-menu,
+	.el-menu-item,
+	.el-sub-menu__title {
+		background-color: var(--my-dark-bg-color) !important;
+		&:not(.is-active) {
+			color: #bdbdc0 !important;
+		}
+		&.is-active {
+			color: #ffffff !important;
+			background-color: #000000 !important;
+		}
+	}
+	.el-menu-item:not(.is-active):hover {
+		background-color: var(--my-dark-main-bg-color) !important;
+	}
+	.aside-split {
+		background-color: var(--my-dark-bg-color) !important;
+		border-right: var(--my-dark-border-light) !important;
+		.logo {
+			border-bottom: var(--my-dark-border-light) !important;
 		}
 	}
 }

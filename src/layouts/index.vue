@@ -6,4 +6,8 @@
 
 <script lang="ts" setup name="layout"></script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+.layout {
+	min-width: 760px;
+}
+</style>
