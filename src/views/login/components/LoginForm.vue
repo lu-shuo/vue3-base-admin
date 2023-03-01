@@ -24,15 +24,15 @@
 </template>
 
 <script lang="ts" setup name="LoginForm">
-import { ref, reactive } from 'vue';
 import type { FormInstance, FormRules } from 'element-plus';
 import { loginApi } from '@/api/modules/login';
 import { useAppStore } from '@/stores/modules/app';
 import { HOME_URL } from '@/config/router';
-import { useRouter } from 'vue-router';
-import { ElNotification } from 'element-plus';
 import { getTimeState } from '@/utils/utils';
 import { CircleClose, UserFilled } from '@element-plus/icons-vue';
+import { initDynamicRouter } from '@/routers/modules/dynamicRoutes';
+import { ElNotification } from 'element-plus';
+import { useRouter } from 'vue-router';
 import md5 from 'js-md5';
 
 const router = useRouter();
@@ -61,9 +61,8 @@ const login = (formEl: FormInstance | undefined) => {
 				const { data } = await loginApi({ ...loginForm, password: md5(loginForm.password) });
 				appStore.setToken(data.access_token);
 
-				// TODO:登陆获取动态路由、菜单、权限
 				// 2.添加动态路由
-				// await initDynamicRouter();
+				await initDynamicRouter();
 
 				// 3.清空 tabs、keepAlive 保留的数据
 				// tabsStore.closeMultipleTab();

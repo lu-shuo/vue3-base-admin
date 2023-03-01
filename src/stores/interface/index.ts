@@ -15,3 +15,11 @@ export interface ThemeConfigProps {
 	// tabsIcon: boolean;
 	// footer: boolean;
 }
+
+export interface AuthState {
+	routeName: string;
+	authButtonList: {
+		[key: string]: string[];
+	};
+	authMenuList: Menu.MenuOptions[];
+}
