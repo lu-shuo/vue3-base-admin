@@ -7,8 +7,8 @@ export interface ThemeConfigProps {
 	isGrey: boolean;
 	isWeak: boolean;
 	isCollapse: boolean;
+	layout: LayoutType;
 	// maximize: boolean;
-	// layout: LayoutType;
 	// breadcrumb: boolean;
 	// breadcrumbIcon: boolean;
 	// tabs: boolean;
@@ -16,6 +16,13 @@ export interface ThemeConfigProps {
 	// footer: boolean;
 }
 
+export interface AppState {
+	token: string;
+	userInfo: any;
+	language: string;
+	// assemblySize: AssemblySizeType;
+	themeConfig: ThemeConfigProps;
+}
 export interface AuthState {
 	routeName: string;
 	authButtonList: {

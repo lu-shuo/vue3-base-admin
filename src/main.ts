@@ -2,6 +2,8 @@ import { createApp } from 'vue';
 import App from './App.vue';
 // 样式
 import '@/styles/index.scss';
+// iconfont css
+import '@/assets/iconfont/iconfont.scss';
 // svg 组件
 import SvgIcon from '@/components/SvgIcon/index.vue';
 // element icon

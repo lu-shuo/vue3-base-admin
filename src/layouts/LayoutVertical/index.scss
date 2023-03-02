@@ -1,6 +1,5 @@
 .el-container {
 	height: 100%;
-	background-color: #99bcac;
 	.el-aside {
 		width: auto;
 		overflow: inherit;
@@ -26,6 +25,29 @@
 					object-fit: contain;
 					margin-right: 6px;
 				}
+			}
+		}
+		.el-scrollbar {
+			height: calc(100% - 55px);
+			.el-menu {
+				overflow-x: hidden;
+				border-right: none;
+			}
+		}
+	}
+	.el-header {
+		box-sizing: border-box;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		height: 55px;
+		padding: 0 15px;
+		background-color: #ffffff;
+		border-bottom: 1px solid #f1f1f1;
+		:deep(.header-right) {
+			.toolBar-icon,
+			.username {
+				color: var(--el-text-color-primary);
 			}
 		}
 	}

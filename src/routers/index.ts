@@ -59,7 +59,7 @@ router.beforeEach(async (to, from, next) => {
 	authStore.setRouteName(to.name as string);
 	if (!authStore.authMenuListGet.length) {
 		await initDynamicRouter();
-		next({ ...to, replace: true });
+		return next({ ...to, replace: true });
 	}
 
 	// * 7.正常访问页面
