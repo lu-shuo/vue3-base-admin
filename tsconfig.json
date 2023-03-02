@@ -20,7 +20,17 @@
 		},
 		"types": ["element-plus/global"]
 	},
-	"include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "types/**/*.d.ts", "types/**/*.ts", "mock/**/*.ts"],
+	"include": [
+		"src/**/*.ts",
+		"src/**/*.d.ts",
+		"src/**/*.tsx",
+		"src/**/*.vue",
+		"types/**/*.d.ts",
+		"types/**/*.ts",
+		"mock/**/*.ts",
+		"src/auto-imports.d.ts",
+		"src/components.d.ts"
+	],
 	"exclude": ["node_modules", "dist", "**/*.js"],
 	"references": [{ "path": "./tsconfig.node.json" }] // TS3新增功能：项目引用。允许用户为项目的不同部分使用不同的 TypeScript 配置。
 }
