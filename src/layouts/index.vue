@@ -1,10 +1,10 @@
 <template>
-	<div>
-		<router-view></router-view>
-	</div>
+	<LayoutVertical />
 </template>
 
-<script lang="ts" setup name="layout"></script>
+<script lang="ts" setup name="layout">
+import LayoutVertical from './LayoutVertical/index.vue';
+</script>
 
 <style lang="scss" scoped>
 .layout {

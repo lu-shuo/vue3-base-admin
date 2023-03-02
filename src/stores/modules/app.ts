@@ -21,7 +21,9 @@ export const useAppStore = defineStore('app', {
 			// 灰色模式
 			isGrey: false,
 			// 色弱模式
-			isWeak: false
+			isWeak: false,
+			// 菜单栏是否收缩
+			isCollapse: false
 		}
 	}),
 	actions: {

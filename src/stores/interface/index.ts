@@ -6,9 +6,9 @@ export interface ThemeConfigProps {
 	primary: string;
 	isGrey: boolean;
 	isWeak: boolean;
+	isCollapse: boolean;
 	// maximize: boolean;
 	// layout: LayoutType;
-	// isCollapse: boolean;
 	// breadcrumb: boolean;
 	// breadcrumbIcon: boolean;
 	// tabs: boolean;
