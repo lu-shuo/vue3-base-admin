@@ -136,7 +136,7 @@ const colorList = [
 ];
 
 const appStore = useAppStore();
-const themeConfig = computed(() => appStore.themeConfig);
+const themeConfig = appStore.themeConfig;
 
 // 切换布局方式
 // const changeLayout = (val: LayoutType) => {
@@ -145,10 +145,10 @@ const themeConfig = computed(() => appStore.themeConfig);
 
 // 监听布局变化，在 body 上添加相对应的 layout class
 watch(
-	() => themeConfig.value.layout,
+	() => themeConfig.layout,
 	() => {
 		const body = document.body as HTMLElement;
-		body.setAttribute('class', themeConfig.value.layout);
+		body.setAttribute('class', themeConfig.layout);
 	},
 	{ immediate: true }
 );

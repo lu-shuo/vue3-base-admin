@@ -9,6 +9,7 @@ export const useTheme = () => {
 	const switchDark = () => {
 		// documentElement 属性以一个元素对象返回一个文档的文档元素。
 		// HTML 文档返回对象为HTML元素。
+		console.log(themeConfig);
 		const root = document.documentElement as HTMLElement;
 		if (themeConfig.isDark) {
 			root.setAttribute('class', 'dark');

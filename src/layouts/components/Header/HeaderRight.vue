@@ -8,7 +8,7 @@
 			<!-- <Message id="message" />
 			<Fullscreen id="fullscreen" /> -->
 		</div>
-		<span class="username">Geeker</span>
+		<span class="username">Admin</span>
 		<!-- <Avatar /> -->
 	</div>
 </template>

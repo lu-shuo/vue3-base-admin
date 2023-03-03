@@ -33,7 +33,7 @@ export const useAppStore = defineStore('app', {
 			this.token = token;
 		},
 		setThemeConfig(themeConfig: ThemeConfigProps) {
-			this.themeConfig = themeConfig;
+			Object.assign(this.themeConfig, themeConfig || {});
 		}
 	},
 	persist: piniaPersistConfig('AppState')
