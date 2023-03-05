@@ -9,7 +9,7 @@
 			<Fullscreen id="fullscreen" /> -->
 		</div>
 		<span class="username">Admin</span>
-		<!-- <Avatar /> -->
+		<Avatar />
 	</div>
 </template>
 
@@ -20,7 +20,7 @@
 import Language from './components/Language.vue';
 import ThemeSetting from './components/ThemeSettings.vue';
 // import AssemblySize from "./components/AssemblySize.vue";
-// import Avatar from "./components/Avatar.vue";
+import Avatar from './components/Avatar.vue';
 </script>
 
 <style scoped lang="scss">
@@ -28,7 +28,6 @@ import ThemeSetting from './components/ThemeSettings.vue';
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	margin: 0 30px 0 0;
 	.header-icon {
 		display: flex;
 		align-items: center;
