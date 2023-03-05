@@ -9,7 +9,6 @@ export const useTheme = () => {
 	const switchDark = () => {
 		// documentElement 属性以一个元素对象返回一个文档的文档元素。
 		// HTML 文档返回对象为HTML元素。
-		console.log(themeConfig);
 		const root = document.documentElement as HTMLElement;
 		if (themeConfig.isDark) {
 			root.setAttribute('class', 'dark');
@@ -48,8 +47,6 @@ export const useTheme = () => {
 		if (type === 'weak') body.setAttribute('style', 'filter: invert(80%)');
 		// 避免同时开启灰色和色弱模式
 		const propName = type === 'grey' ? 'isWeak' : 'isGrey';
-		const obj = { ...themeConfig, [propName]: false };
-		console.log(obj);
 		appStore.setThemeConfig({ ...themeConfig, [propName]: false });
 	};
 

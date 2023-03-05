@@ -1,5 +1,5 @@
 <template>
-	<el-drawer v-model="drawerVisible" title="布局设置" size="300px">
+	<el-drawer v-model="drawerVisible" :title="$t('themeDrawer.title')" size="300px">
 		<!-- 布局切换 -->
 		<!-- <el-divider class="divider" content-position="center">
 			<el-icon><Notification /></el-icon>
@@ -59,22 +59,22 @@
 		<!-- 全局主题 -->
 		<el-divider class="divider" content-position="center">
 			<el-icon><ColdDrink /></el-icon>
-			全局主题
+			{{ $t('themeDrawer.theme') }}
 		</el-divider>
 		<div class="theme-item">
-			<span>主题颜色</span>
+			<span>{{ $t('themeDrawer.primaryColor') }}</span>
 			<el-color-picker v-model="themeConfig.primary" :predefine="colorList" @change="changePrimary" />
 		</div>
 		<div class="theme-item">
-			<span>暗黑模式</span>
+			<span>{{ $t('themeDrawer.darkMode') }}</span>
 			<SwitchDark></SwitchDark>
 		</div>
 		<div class="theme-item">
-			<span>灰色模式</span>
+			<span>{{ $t('themeDrawer.greyMode') }}</span>
 			<el-switch v-model="themeConfig.isGrey" @change="changeGreyOrWeak($event as boolean, 'grey')" />
 		</div>
 		<div class="theme-item">
-			<span>色弱模式</span>
+			<span>{{ $t('themeDrawer.weakMode') }}</span>
 			<el-switch v-model="themeConfig.isWeak" @change="changeGreyOrWeak($event as boolean, 'weak')" />
 		</div>
 		<br />
@@ -82,10 +82,10 @@
 		<!-- 界面设置 -->
 		<el-divider class="divider" content-position="center">
 			<el-icon><Setting /></el-icon>
-			界面设置
+			<span>{{ $t('themeDrawer.interfaceSettings') }}</span>
 		</el-divider>
 		<div class="theme-item">
-			<span>折叠菜单</span>
+			<span>{{ $t('themeDrawer.isCollapse') }}</span>
 			<el-switch v-model="themeConfig.isCollapse" />
 		</div>
 		<!-- <div class="theme-item">

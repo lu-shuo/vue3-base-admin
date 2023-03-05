@@ -54,7 +54,7 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
 		build: {
 			target: BUILD_TARGET,
 			outDir: OUTPUT_DIR,
-			minify: 'esbuild',
+			minify: 'esbuild', // esbuild打包速度快，但不能去除console
 			chunkSizeWarningLimit: 1500, // 触发警告的 chunk 大小 kbs
 			rollupOptions: {
 				output: {

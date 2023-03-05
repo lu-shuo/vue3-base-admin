@@ -12,6 +12,8 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue';
 import pinia from '@/stores/index';
 // vue Router
 import router from '@/routers/index';
+// vue i18n
+import I18n from '@/languages/index';
 // errorHandler
 import errorHandler from '@/utils/errorHandler';
 
@@ -28,5 +30,7 @@ app.component('SvgIcon', SvgIcon);
 app.use(pinia);
 
 app.use(router);
+
+app.use(I18n);
 
 app.mount('#app');
