@@ -27,7 +27,7 @@
 				<HeaderLeft />
 				<HeaderRight />
 			</el-header>
-			<router-view></router-view>
+			<Main />
 		</el-container>
 	</el-container>
 </template>
@@ -38,6 +38,7 @@ import { useAuthStore } from '@/stores/modules/auth';
 import SubMenu from '../components/Menu/SubMenu.vue';
 import HeaderLeft from '../components/Header/HeaderLeft.vue';
 import HeaderRight from '../components/Header/HeaderRight.vue';
+import Main from '../components/Main/index.vue';
 
 const route = useRoute();
 const appStore = useAppStore();

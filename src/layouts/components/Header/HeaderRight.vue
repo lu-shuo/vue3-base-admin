@@ -5,8 +5,8 @@
 			<Language id="language" />
 			<!-- <SearchMenu id="searchMenu" /> -->
 			<ThemeSetting id="themeSetting" />
-			<!-- <Message id="message" />
-			<Fullscreen id="fullscreen" /> -->
+			<!-- <Message id="message" /> -->
+			<Fullscreen id="fullscreen" />
 		</div>
 		<span class="username">Admin</span>
 		<Avatar />
@@ -15,7 +15,7 @@
 
 <script setup lang="ts" name="HeaderRight">
 // import SearchMenu from "./components/SearchMenu.vue";
-// import Fullscreen from "./components/Fullscreen.vue";
+import Fullscreen from './components/Fullscreen.vue';
 // import Message from "./components/Message.vue";
 import Language from './components/Language.vue';
 import ThemeSetting from './components/ThemeSettings.vue';

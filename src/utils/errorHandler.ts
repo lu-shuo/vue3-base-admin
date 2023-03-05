@@ -2,6 +2,7 @@
  * @description 全局代码错误捕捉
  * */
 const errorHandler = (error: any) => {
+	console.error(error);
 	// 过滤 HTTP 请求错误
 	if (error.status || error.status === 0) return false;
 	const errorMap: { [key: string]: string } = {

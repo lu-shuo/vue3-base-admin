@@ -1,3 +1,4 @@
+// * 持久化
 import { defineStore } from 'pinia';
 import { AppState, ThemeConfigProps } from '../interface';
 import piniaPersistConfig from '@/config/piniaPersist';
@@ -25,7 +26,17 @@ export const useAppStore = defineStore('app', {
 			// 菜单栏是否收缩
 			isCollapse: false,
 			// 布局
-			layout: 'vertical'
+			layout: 'vertical',
+			// 面包屑
+			breadcrumb: true,
+			// 面包屑图标
+			breadcrumbIcon: true,
+			// 显示tab栏
+			tabs: true,
+			// tab栏按钮图标
+			tabsIcon: true,
+			// 页脚
+			footer: true
 		}
 	}),
 	actions: {

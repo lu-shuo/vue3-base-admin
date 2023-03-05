@@ -1,3 +1,4 @@
+// * 不需要持久化，刷新页面在动态路由中重新获取
 import { defineStore } from 'pinia';
 import { AuthState } from '../interface/index';
 import { getAuthButtonListApi, getAuthMenuListApi } from '@/api/modules/login';
