@@ -67,3 +67,18 @@ export function getType(val: any) {
 	if (typeof val !== 'object') return typeof val;
 	else return Object.prototype.toString.call(val).slice(8, -1).toLocaleLowerCase();
 }
+
+/**
+ * @description 递归找出所有面包屑存储到 pinia/vuex 中
+ * @param {Array} menuList 所有菜单列表
+ * @param {Object} result 输出的结果
+ * @param {Array} parent 父级菜单
+ * @returns object
+ */
+export const getAllBreadcrumbList = (menuList: Menu.MenuOptions[], result: { [key: string]: any } = {}, parent = []) => {
+	for (const item of menuList) {
+		result[item.path] = [...parent, item];
+		if (item.children) getAllBreadcrumbList(item.children, result, result[item.path]);
+	}
+	return result;
+};

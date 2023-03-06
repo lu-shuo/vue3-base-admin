@@ -1,23 +1,24 @@
 <template>
-	<el-icon class="collapse-icon" @click="collapse">
-		<component :is="appStore.themeConfig.isCollapse ? 'expand' : 'fold'"></component>
-	</el-icon>
+	<div class="header-left">
+		<CollapseIcon id="collapseIcon" />
+		<Breadcrumb id="breadcrumb" v-if="appStore.themeConfig.breadcrumb" />
+	</div>
 </template>
 
 <script lang="ts" setup name="HeaderLeft">
+import CollapseIcon from './components/CollapseIcon.vue';
+import Breadcrumb from './components/Breadcrumb.vue';
 import { useAppStore } from '@/stores/modules/app';
 
 const appStore = useAppStore();
-
-const collapse = () => {
-	appStore.themeConfig.isCollapse = !appStore.themeConfig.isCollapse;
-};
 </script>
 
 <style lang="scss" scoped>
-.collapse-icon {
-	margin-right: 20px;
-	font-size: 22px;
-	cursor: pointer;
+.header-left {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	white-space: nowrap;
 }
 </style>
