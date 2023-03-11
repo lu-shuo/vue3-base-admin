@@ -13,7 +13,7 @@ export interface ThemeConfigProps {
 	footer: boolean;
 	breadcrumb: boolean;
 	breadcrumbIcon: boolean;
-	// maximize: boolean;
+	maximize: boolean;
 }
 
 export interface AppState {

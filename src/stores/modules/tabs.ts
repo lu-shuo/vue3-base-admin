@@ -32,7 +32,7 @@ export const useTabsStore = defineStore('tabs', {
 			this.tabsMenuList = tabs.filter(tab => tab.path !== path);
 		},
 		closeOtherTab() {
-			this.tabsMenuList = this.tabsMenuList.filter(tab => tab.path === this.currentTabPath);
+			this.tabsMenuList = this.tabsMenuList.filter(tab => tab.path === this.currentTabPath || !tab.closable);
 		},
 		closeAllTab() {
 			this.tabsMenuList = this.tabsMenuList.filter(tab => !tab.closable);

@@ -36,7 +36,9 @@ export const useAppStore = defineStore('app', {
 			// tab栏按钮图标
 			tabsIcon: true,
 			// 页脚
-			footer: true
+			footer: true,
+			// 当前页面最大化
+			maximize: false
 		}
 	}),
 	actions: {
