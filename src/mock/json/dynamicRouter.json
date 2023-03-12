@@ -18,7 +18,7 @@
 		{
 			"path": "/assembly",
 			"name": "assembly",
-			"redirect": "/assembly/guide",
+			"redirect": "/assembly/uploadFile",
 			"meta": {
 				"icon": "Briefcase",
 				"title": "常用组件",

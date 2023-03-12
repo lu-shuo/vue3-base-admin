@@ -14,6 +14,9 @@ import pinia from '@/stores/index';
 import router from '@/routers/index';
 // vue i18n
 import I18n from '@/languages/index';
+// vue-simple-uploader
+import uploader from 'vue-simple-uploader';
+import 'vue-simple-uploader/dist/style.css';
 // errorHandler
 import errorHandler from '@/utils/errorHandler';
 
@@ -32,5 +35,7 @@ app.use(pinia);
 app.use(router);
 
 app.use(I18n);
+
+app.use(uploader);
 
 app.mount('#app');

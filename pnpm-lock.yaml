@@ -35,6 +35,7 @@ specifiers:
   rollup-plugin-visualizer: ^5.9.0
   sass: ^1.58.3
   sortablejs: ^1.15.0
+  spark-md5: ^3.0.2
   standard-version: ^9.5.0
   stylelint: ^15.2.0
   stylelint-config-html: ^1.1.0
@@ -57,6 +58,7 @@ specifiers:
   vue: ^3.2.47
   vue-i18n: 9.3.0-beta.16
   vue-router: '4'
+  vue-simple-uploader: ^1.0.1
   vue-tsc: ^1.2.0
 
 dependencies:
@@ -71,9 +73,11 @@ dependencies:
   pinia: 2.0.32_hmuptsblhheur2tugfgucj7gc4
   pinia-plugin-persistedstate: 3.1.0_pinia@2.0.32
   sortablejs: 1.15.0
+  spark-md5: 3.0.2
   vue: 3.2.47
   vue-i18n: 9.3.0-beta.16_vue@3.2.47
   vue-router: 4.1.6_vue@3.2.47
+  vue-simple-uploader: 1.0.1_vue@3.2.47
 
 devDependencies:
   '@commitlint/cli': 17.4.4
@@ -6887,6 +6891,10 @@ packages:
     resolution: {integrity: sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ==}
     dev: true
 
+  /simple-uploader.js/0.6.0:
+    resolution: {integrity: sha512-EXN+o+LD6PVnfzTq/usP8k8yYrI6wKrAx8e+fPcPLVzzttonkyn1KT+Ycx5JnPBSnp6lpiVhNG4JhDJucdPnhA==}
+    dev: false
+
   /slash/3.0.0:
     resolution: {integrity: sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==}
     engines: {node: '>=8'}
@@ -7003,6 +7011,10 @@ packages:
   /sourcemap-codec/1.4.8:
     resolution: {integrity: sha512-9NykojV5Uih4lgo5So5dtw+f0JgJX30KCNI8gwhz2J9A15wD0Ml6tjHKwf6fTSa6fAdVBdZeNOs9eJ71qCk8vA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npm.taobao.org/sourcemap-codec/-/sourcemap-codec-1.4.8.tgz}
     deprecated: Please use @jridgewell/sourcemap-codec instead
+
+  /spark-md5/3.0.2:
+    resolution: {integrity: sha512-wcFzz9cDfbuqe0FZzfi2or1sgyIrsDwmPwfZC4hiNidPdPINjeUwNfv5kldczoEAcjl9Y1L3SM7Uz2PUEQzxQw==}
+    dev: false
 
   /spdx-correct/3.1.1:
     resolution: {integrity: sha512-cOYcUWwhCuHCXi49RhFRCyJEK3iPj1Ziz9DpViV3tbZOwXD49QzIN3MpOLJNxh2qwq2lJJZaKMVw9qNi4jTC0w==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npm.taobao.org/spdx-correct/-/spdx-correct-3.1.1.tgz}
@@ -8053,6 +8065,16 @@ packages:
       vue: ^3.2.0
     dependencies:
       '@vue/devtools-api': 6.4.5
+      vue: 3.2.47
+    dev: false
+
+  /vue-simple-uploader/1.0.1_vue@3.2.47:
+    resolution: {integrity: sha512-upkQeG1eRYO2b5mTdPP1nXohEDk38p9AvR7ao9b8oyIcChUlhnOxS/fs0SDnbkhv2lCYrqx2AGkqoqSKZtgp6g==}
+    engines: {node: '>= 4.0.0', npm: '>= 3.0.0'}
+    peerDependencies:
+      vue: '>=3.1'
+    dependencies:
+      simple-uploader.js: 0.6.0
       vue: 3.2.47
     dev: false
 

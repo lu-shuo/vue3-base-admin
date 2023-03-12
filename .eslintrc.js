@@ -42,7 +42,7 @@ module.exports = {
 		'prefer-const': 2, // 使用 const 声明那些声明后不再被修改的变量
 		'no-const-assign': 2, // 禁止修改 const 声明的变量
 		quotes: ['error', 'single'], // 强制使用单引号
-		'no-undefined': 2, // 禁止将 undefined 作为标识符
+		'no-undefined': 0, // 禁止将 undefined 作为标识符
 		'object-shorthand': 2, // 禁止对象字面量中方法和属性使用简写语法
 		'quote-props': ['error', 'as-needed'], // 当没有严格要求时，禁止对象字面量属性名称使用引号
 		'dot-notation': 2, // 强制尽可能地使用点号

@@ -1,0 +1,121 @@
+#global-uploader {
+	&:not(.global-uploader-single) {
+		position: fixed;
+		right: 15px;
+		bottom: 15px;
+		z-index: 20;
+		box-sizing: border-box;
+	}
+	.uploader-app {
+		width: 600px;
+	}
+	.file-panel {
+		background-color: #ffffff;
+		border: 1px solid #e2e2e2;
+		border-radius: 7px 7px 0 0;
+		box-shadow: 0 0 10px rgb(0 0 0 / 20%);
+		.file-title {
+			display: flex;
+			height: 40px;
+			padding: 0 15px;
+			line-height: 40px;
+			border-bottom: 1px solid #dddddd;
+			.operate {
+				flex: 1;
+				text-align: right;
+				.el-button {
+					// --el-button-hover-link-text-color: #{$blue};
+					+ .el-button {
+						margin-left: 8px;
+					}
+				}
+			}
+		}
+		.file-list {
+			position: relative;
+			height: 300px;
+			overflow-x: hidden;
+			overflow-y: auto;
+			background-color: #ffffff;
+			transition: all 0.3s;
+			.uploader-file-meta {
+				width: 0;
+			}
+			.uploader-file-status {
+				width: 32%;
+			}
+			.file-item {
+				background-color: #ffffff;
+			}
+		}
+		&.collapse {
+			.file-title {
+				background-color: #e7ecf2;
+			}
+			.file-list {
+				height: 0;
+			}
+		}
+	}
+	.no-file {
+		position: absolute;
+		top: 45%;
+		left: 50%;
+		color: #999999;
+		transform: translate(-50%, -50%);
+		svg {
+			vertical-align: text-bottom;
+		}
+	}
+	.uploader-file {
+		&.md5 {
+			.uploader-file-resume {
+				display: none;
+			}
+		}
+	}
+	.uploader-file-icon {
+		&::before {
+			content: '' !important;
+		}
+		&[icon='image'] {
+			background: url('./images/image-icon.png');
+		}
+		&[icon='audio'] {
+			background: url('./images/audio-icon.png');
+			background-size: contain;
+		}
+		&[icon='video'] {
+			background: url('./images/video-icon.png');
+		}
+		&[icon='document'] {
+			background: url('./images/text-icon.png');
+		}
+		&[icon='unknown'] {
+			background: url('./images/zip.png') no-repeat center;
+			background-size: contain;
+		}
+	}
+	.uploader-file-actions > span {
+		margin-right: 6px;
+	}
+	.custom-status {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		z-index: 1;
+	}
+}
+
+/* 隐藏上传按钮 */
+#global-uploader-btn {
+	position: absolute;
+	clip: rect(0, 0, 0, 0);
+}
+.global-uploader-single {
+	#global-uploader-btn {
+		position: relative;
+	}
+}

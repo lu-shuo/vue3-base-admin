@@ -18,7 +18,8 @@
 			"@/*": ["src/*"],
 			"#/*": ["types/*"]
 		},
-		"types": ["element-plus/global"]
+		"types": ["element-plus/global"],
+		"allowJs": true
 	},
 	"include": [
 		"src/**/*.ts",
