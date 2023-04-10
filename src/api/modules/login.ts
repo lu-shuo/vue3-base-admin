@@ -1,5 +1,5 @@
 import http from '@/api';
-import { Login } from '../models/login';
+import { Login } from '@/api/models/login';
 import { PORT1 } from '@/config/axios';
 import AuthButtons from '@/mock/json/authButtons.json';
 import DynamicRouter from '@/mock/json/dynamicRouter.json';

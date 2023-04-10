@@ -42,6 +42,20 @@
 						"isAffix": false,
 						"isKeepAlive": true
 					}
+				},
+				{
+					"path": "/assembly/wangEditor",
+					"name": "wangEditor",
+					"component": "/assembly/wangEditor/index",
+					"meta": {
+						"icon": "Menu",
+						"title": "富文本编辑器",
+						"isLink": "",
+						"isHide": false,
+						"isFull": false,
+						"isAffix": false,
+						"isKeepAlive": true
+					}
 				}
 			]
 		}
