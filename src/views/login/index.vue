@@ -1,6 +1,6 @@
 <template>
-	<div class="login-container flex-center">
-		<div class="login-box flex-justify-around">
+	<div class="login-container flx-center">
+		<div class="login-box flx-justify-around">
 			<SwitchDark class="dark" />
 			<div class="login-left">
 				<img src="@/assets/images/login_left.png" alt="login" />

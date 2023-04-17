@@ -8,9 +8,8 @@
 import { useAppStore } from '@/stores/modules/app';
 
 const appStore = useAppStore();
-const themeConfig = computed(() => appStore.themeConfig);
 const exitMaximize = () => {
-	appStore.setThemeConfig({ ...themeConfig.value, maximize: false });
+	appStore.setAppState('maximize', false);
 };
 </script>
 

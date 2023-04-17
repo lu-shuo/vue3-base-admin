@@ -10,6 +10,6 @@ import ThemeDrawer from './components/ThemeDrawer/index.vue';
 
 <style lang="scss" scoped>
 .layout {
-	min-width: 760px;
+	min-width: 730px;
 }
 </style>

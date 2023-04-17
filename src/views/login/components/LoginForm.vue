@@ -26,7 +26,9 @@
 <script lang="ts" setup name="LoginForm">
 import type { FormInstance, FormRules } from 'element-plus';
 import { loginApi } from '@/api/modules/login';
-import { useAppStore } from '@/stores/modules/app';
+import { useUserStore } from '@/stores/modules/user';
+import { useTabsStore } from '@/stores/modules/tabs';
+import { useKeepAliveStore } from '@/stores/modules/keepAlive';
 import { HOME_URL } from '@/config/router';
 import { getTimeState } from '@/utils/utils';
 import { CircleClose, UserFilled } from '@element-plus/icons-vue';
@@ -34,14 +36,15 @@ import { initDynamicRouter } from '@/routers/modules/dynamicRoutes';
 import md5 from 'js-md5';
 
 const router = useRouter();
+const userStore = useUserStore();
+const tabsStore = useTabsStore();
+const keepAliveStore = useKeepAliveStore();
 
 const loginFormRef = ref<FormInstance>();
-
 const loginForm = reactive({
 	username: '',
 	password: ''
 });
-
 const loginRules = reactive<FormRules>({
 	username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
 	password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
@@ -53,18 +56,17 @@ const login = (formEl: FormInstance | undefined) => {
 	formEl?.validate(async valid => {
 		if (valid) {
 			loading.value = true;
-			const appStore = useAppStore();
 			try {
 				// 1.执行登录接口
 				const { data } = await loginApi({ ...loginForm, password: md5(loginForm.password) });
-				appStore.setToken(data.access_token);
+				userStore.setToken(data.access_token);
 
 				// 2.添加动态路由
 				await initDynamicRouter();
 
 				// 3.清空 tabs、keepAlive 保留的数据
-				// tabsStore.closeMultipleTab();
-				// keepAlive.setKeepAliveName();
+				tabsStore.closeAllTab();
+				keepAliveStore.setKeepAliveName();
 
 				// 4.跳转到首页
 				router.push(HOME_URL);

@@ -4,6 +4,14 @@ import { wrapperEnv, pathResolve } from './build/utils';
 import { createProxy } from './build/vite/proxy';
 import { createVitePlugins } from './build/vite/plugins';
 import { BUILD_TARGET, OUTPUT_DIR } from './build/config';
+import pkg from './package.json';
+import dayjs from 'dayjs';
+
+const { dependencies, devDependencies, name, version } = pkg;
+const __APP_INFO__ = {
+	pkg: { dependencies, devDependencies, name, version },
+	lastBuildTime: dayjs().format('YYYY-MM-DD HH:mm:ss')
+};
 
 // https://cn.vitejs.dev/config/
 export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
@@ -28,11 +36,13 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
 				'#': pathResolve('types')
 			}
 		},
+		define: {
+			__APP_INFO__: JSON.stringify(__APP_INFO__)
+		},
 		css: {
-			// 指定传递给 CSS 预处理器的选项。文件扩展名用作选项的键
 			preprocessorOptions: {
 				scss: {
-					additionalData: '@use "@/styles/var.scss" as *;' // 在入口文件起始添加代码
+					additionalData: '@use "@/styles/var.scss" as *;'
 				}
 			}
 		},

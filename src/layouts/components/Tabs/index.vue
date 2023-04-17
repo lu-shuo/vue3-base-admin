@@ -10,7 +10,7 @@
 					:closable="item.closable"
 				>
 					<template #label>
-						<el-icon class="tabs-icon" v-show="item.icon && themeConfig.tabsIcon">
+						<el-icon class="tabs-icon" v-show="item.icon && tabsIcon">
 							<component :is="item.icon"></component>
 						</el-icon>
 						{{ item.title }}
@@ -35,14 +35,12 @@ const router = useRouter();
 const route = useRoute();
 
 const appStore = useAppStore();
-const themeConfig = appStore.themeConfig;
-
 const authStore = useAuthStore();
-
-const tabsStore = useTabsStore();
-const tabsMenuList = computed(() => tabsStore.tabsMenuList);
-
 const keepAliveStore = useKeepAliveStore();
+const tabsStore = useTabsStore();
+
+const tabsMenuList = computed(() => tabsStore.tabsMenuList);
+const tabsIcon = computed(() => appStore.tabsIcon);
 
 // 监听路由变化激活对应tab
 watch(
@@ -94,7 +92,7 @@ const initAffixTabs = () => {
 		}
 	});
 };
-
+// tab拖拽排序
 const initTabDrag = () => {
 	Sortable.create(document.querySelector('.el-tabs__nav') as HTMLElement, {
 		draggable: '.el-tabs__item',

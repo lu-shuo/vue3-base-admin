@@ -1,5 +1,5 @@
 import router from '@/routers/index';
-import { useAppStore } from '@/stores/modules/app';
+import { useUserStore } from '@/stores/modules/user';
 import { useAuthStore } from '@/stores/modules/auth';
 import { LOGIN_URL } from '@/config/router';
 import { getType } from '@/utils/utils';
@@ -8,7 +8,7 @@ import { getType } from '@/utils/utils';
 const modules = import.meta.glob('@/views/**/*.vue');
 
 export const initDynamicRouter = async () => {
-	const appStore = useAppStore();
+	const userStore = useUserStore();
 	const authStore = useAuthStore();
 	try {
 		// * 1.获取菜单列表 && 按钮权限（可合并到一个接口获取，根据后端不同可自行改造）
@@ -22,7 +22,7 @@ export const initDynamicRouter = async () => {
 				type: 'warning',
 				duration: 3000
 			});
-			appStore.setToken('');
+			userStore.setToken('');
 			router.replace(LOGIN_URL);
 			return Promise.reject('No permission');
 		}
@@ -40,7 +40,7 @@ export const initDynamicRouter = async () => {
 		});
 	} catch (error) {
 		// ! 当按钮 || 菜单请求出错时，重定向到登陆页
-		appStore.setToken('');
+		userStore.setToken('');
 		router.replace(LOGIN_URL);
 		return Promise.reject(error);
 	}

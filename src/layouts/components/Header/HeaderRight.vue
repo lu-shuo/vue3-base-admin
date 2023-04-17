@@ -8,12 +8,13 @@
 			<!-- <Message id="message" /> -->
 			<Fullscreen id="fullscreen" />
 		</div>
-		<span class="username">Admin</span>
+		<span class="username">{{ username }}</span>
 		<Avatar />
 	</div>
 </template>
 
 <script setup lang="ts" name="HeaderRight">
+import { useUserStore } from '@/stores/modules/user';
 // import SearchMenu from "./components/SearchMenu.vue";
 import Fullscreen from './components/Fullscreen.vue';
 // import Message from "./components/Message.vue";
@@ -21,6 +22,9 @@ import Language from './components/Language.vue';
 import ThemeSetting from './components/ThemeSettings.vue';
 // import AssemblySize from "./components/AssemblySize.vue";
 import Avatar from './components/Avatar.vue';
+
+const userStore = useUserStore();
+const username = computed(() => userStore.userInfo.name);
 </script>
 
 <style scoped lang="scss">

@@ -37,7 +37,6 @@ const router = useRouter();
 const appStore = useAppStore();
 const tabStore = useTabsStore();
 const keepAliveStore = useKeepAliveStore();
-const themeConfig = computed(() => appStore.themeConfig);
 
 const refreshCurrentPage: Function = inject('refresh') as Function;
 // refresh current page
@@ -54,7 +53,7 @@ const refresh = () => {
 
 // maximize current page
 const maximize = () => {
-	appStore.setThemeConfig({ ...themeConfig.value, maximize: true });
+	appStore.setAppState('maximize', true);
 };
 
 // Close Current

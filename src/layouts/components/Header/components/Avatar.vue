@@ -24,14 +24,14 @@
 </template>
 
 <script setup lang="ts">
-import { useAppStore } from '@/stores/modules/app';
+import { useUserStore } from '@/stores/modules/user';
 import { LOGIN_URL } from '@/config/router';
 import { logoutApi } from '@/api/modules/login';
 // import InfoDialog from "./InfoDialog.vue";
 // import PasswordDialog from "./PasswordDialog.vue";
 
 const router = useRouter();
-const appStore = useAppStore();
+const userStore = useUserStore();
 
 // 退出登录
 const logout = () => {
@@ -43,7 +43,7 @@ const logout = () => {
 		// 1.调用退出登录接口
 		await logoutApi();
 		// 2.清除 Token
-		appStore.setToken('');
+		userStore.setToken('');
 		// 3.重定向到登陆页
 		router.replace(LOGIN_URL);
 		ElMessage.success('退出登录成功！');

@@ -1,6 +1,6 @@
 <template>
-	<el-icon class="collapse-icon" @click="collapse">
-		<component :is="appStore.themeConfig.isCollapse ? 'expand' : 'fold'"></component>
+	<el-icon class="collapse-icon" @click="changeCollapse">
+		<component :is="appStore.isCollapse ? 'expand' : 'fold'"></component>
 	</el-icon>
 </template>
 
@@ -9,9 +9,7 @@ import { useAppStore } from '@/stores/modules/app';
 
 const appStore = useAppStore();
 
-const collapse = () => {
-	appStore.themeConfig.isCollapse = !appStore.themeConfig.isCollapse;
-};
+const changeCollapse = () => appStore.setAppState('isCollapse', !appStore.isCollapse);
 </script>
 
 <style lang="scss" scoped>

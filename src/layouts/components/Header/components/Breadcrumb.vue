@@ -1,10 +1,10 @@
 <template>
-	<div :class="['breadcrumb-box', !themeConfig.breadcrumbIcon && 'no-icon']">
+	<div :class="['breadcrumb-box', !appStore.breadcrumbIcon && 'no-icon']">
 		<el-breadcrumb :separator-icon="ArrowRight">
 			<transition-group name="breadcrumb">
 				<el-breadcrumb-item v-for="(item, index) in breadcrumbList" :key="item.path">
 					<div class="el-breadcrumb__inner is-link" @click="onBreadcrumbClick(item, index)">
-						<el-icon class="breadcrumb-icon" v-show="item.meta.icon && themeConfig.breadcrumbIcon">
+						<el-icon class="breadcrumb-icon" v-show="item.meta.icon && appStore.breadcrumbIcon">
 							<component :is="item.meta.icon"></component>
 						</el-icon>
 						<span class="breadcrumb-title">{{ item.meta.title }}</span>
@@ -25,7 +25,6 @@ const route = useRoute();
 const router = useRouter();
 const authStore = useAuthStore();
 const appStore = useAppStore();
-const themeConfig = computed(() => appStore.themeConfig);
 const breadcrumbList = computed(() => {
 	let breadcrumbData = authStore.breadcrumbListGet[route.matched[route.matched.length - 1].path] ?? [];
 	// 🙅‍♀️不需要首页面包屑可删除以下判断

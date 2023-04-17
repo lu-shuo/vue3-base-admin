@@ -1,7 +1,7 @@
 <template>
 	<div class="header-left">
 		<CollapseIcon id="collapseIcon" />
-		<Breadcrumb id="breadcrumb" v-if="appStore.themeConfig.breadcrumb" />
+		<Breadcrumb id="breadcrumb" v-if="appStore.breadcrumb" />
 	</div>
 </template>
 

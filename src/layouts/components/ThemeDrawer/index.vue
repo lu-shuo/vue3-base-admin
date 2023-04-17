@@ -63,21 +63,29 @@
 		</el-divider>
 		<div class="theme-item">
 			<span>{{ $t('themeDrawer.primaryColor') }}</span>
-			<el-color-picker v-model="themeConfig.primary" :predefine="colorList" @change="changePrimary" />
+			<el-color-picker v-model="primary" :predefine="colorList" @change="changePrimary" />
 		</div>
 		<div class="theme-item">
 			<span>{{ $t('themeDrawer.darkMode') }}</span>
-			<SwitchDark></SwitchDark>
+			<SwitchDark />
 		</div>
 		<div class="theme-item">
 			<span>{{ $t('themeDrawer.greyMode') }}</span>
-			<el-switch v-model="themeConfig.isGrey" @change="changeGreyOrWeak($event as boolean, 'grey')" />
+			<el-switch v-model="isGrey" @change="changeGreyOrWeak('grey', !!$event)" />
 		</div>
 		<div class="theme-item">
 			<span>{{ $t('themeDrawer.weakMode') }}</span>
-			<el-switch v-model="themeConfig.isWeak" @change="changeGreyOrWeak($event as boolean, 'weak')" />
+			<el-switch v-model="isWeak" @change="changeGreyOrWeak('weak', !!$event)" />
 		</div>
-		<br />
+		<div class="theme-item mb40">
+			<span>
+				侧边栏反转色
+				<el-tooltip effect="dark" content="该属性目前只在纵向布局模式下生效" placement="top">
+					<el-icon><QuestionFilled /></el-icon>
+				</el-tooltip>
+			</span>
+			<el-switch v-model="asideInverted" :disabled="layout !== 'vertical'" @change="setAsideTheme" />
+		</div>
 
 		<!-- 界面设置 -->
 		<el-divider class="divider" content-position="center">
@@ -86,40 +94,41 @@
 		</el-divider>
 		<div class="theme-item">
 			<span>{{ $t('themeDrawer.isCollapse') }}</span>
-			<el-switch v-model="themeConfig.isCollapse" />
+			<el-switch v-model="isCollapse" />
 		</div>
-		<!-- <div class="theme-item">
+		<div class="theme-item">
 			<span>面包屑</span>
-			<el-switch v-model="themeConfig.breadcrumb" />
+			<el-switch v-model="breadcrumb" />
 		</div>
 		<div class="theme-item">
 			<span>面包屑图标</span>
-			<el-switch v-model="themeConfig.breadcrumbIcon" />
+			<el-switch v-model="breadcrumbIcon" />
 		</div>
 		<div class="theme-item">
 			<span>标签栏</span>
-			<el-switch v-model="themeConfig.tabs" />
+			<el-switch v-model="tabs" />
 		</div>
 		<div class="theme-item">
 			<span>标签栏图标</span>
-			<el-switch v-model="themeConfig.tabsIcon" />
+			<el-switch v-model="tabsIcon" />
 		</div>
 		<div class="theme-item">
 			<span>页脚</span>
-			<el-switch v-model="themeConfig.footer" />
-		</div> -->
+			<el-switch v-model="footer" />
+		</div>
 	</el-drawer>
 </template>
 
 <script setup lang="ts">
 import { useTheme } from '@/hooks/useTheme';
 import { useAppStore } from '@/stores/modules/app';
+import { storeToRefs } from 'pinia';
 // import { LayoutType } from '@/stores/interface';
 import { DEFAULT_PRIMARY } from '@/config/themeConfig';
 import SwitchDark from '@/components/SwitchDark/index.vue';
 import mittBus from '@/utils/mittBus';
 
-const { changePrimary, changeGreyOrWeak } = useTheme();
+const { changePrimary, changeGreyOrWeak, setAsideTheme } = useTheme();
 
 // 预定义主题颜色
 const colorList = [
@@ -136,22 +145,13 @@ const colorList = [
 ];
 
 const appStore = useAppStore();
-const themeConfig = appStore.themeConfig;
+const { layout, primary, isGrey, isWeak, asideInverted, isCollapse, breadcrumb, breadcrumbIcon, tabs, tabsIcon, footer } =
+	storeToRefs(appStore);
 
 // 切换布局方式
-// const changeLayout = (val: LayoutType) => {
-// 	appStore.setThemeConfig({ ...themeConfig.value, layout: val });
+// const setLayout = (val: LayoutType) => {
+// 	appStore.setAppState("layout", val);
 // };
-
-// 监听布局变化，在 body 上添加相对应的 layout class
-watch(
-	() => themeConfig.layout,
-	() => {
-		const body = document.body as HTMLElement;
-		body.setAttribute('class', themeConfig.layout);
-	},
-	{ immediate: true }
-);
 
 // 打开主题设置
 const drawerVisible = ref(false);

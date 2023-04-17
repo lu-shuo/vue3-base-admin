@@ -1,22 +1,35 @@
 import { createApp } from 'vue';
 import App from './App.vue';
-// 样式
-import '@/styles/index.scss';
+// reset style sheet
+import '@/styles/reset.scss';
+// CSS common style sheet
+import '@/styles/common.scss';
 // iconfont css
 import '@/assets/iconfont/iconfont.scss';
-// svg 组件
-import SvgIcon from '@/components/SvgIcon/index.vue';
-// element icon
-import * as ElementPlusIconsVue from '@element-plus/icons-vue';
-// store
-import pinia from '@/stores/index';
+// font css
+import '@/assets/fonts/font.scss';
+// element css
+// import 'element-plus/dist/index.css'; // auto import
+// element dark css
+import 'element-plus/theme-chalk/dark/css-vars.css';
+// custom element dark css
+import '@/styles/theme/element-dark.scss';
+// custom element css
+import '@/styles/element.scss';
+// svg icons
+import 'virtual:svg-icons-register';
+// element plus
+import ElementPlus from 'element-plus';
+// element icons
+import * as Icons from '@element-plus/icons-vue';
+// custom directives
+// import directives from '@/directives/index';
 // vue Router
-import router from '@/routers/index';
+import router from '@/routers';
 // vue i18n
 import I18n from '@/languages/index';
-// vue-simple-uploader
-import uploader from 'vue-simple-uploader';
-import 'vue-simple-uploader/dist/style.css';
+// pinia store
+import pinia from '@/stores';
 // errorHandler
 import errorHandler from '@/utils/errorHandler';
 
@@ -24,18 +37,9 @@ const app = createApp(App);
 
 app.config.errorHandler = errorHandler;
 
-for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
-	app.component(key, component);
-}
+// register the element Icons component
+Object.keys(Icons).forEach(key => {
+	app.component(key, Icons[key as keyof typeof Icons]);
+});
 
-app.component('SvgIcon', SvgIcon);
-
-app.use(pinia);
-
-app.use(router);
-
-app.use(I18n);
-
-app.use(uploader);
-
-app.mount('#app');
+app.use(ElementPlus).use(router).use(I18n).use(pinia).mount('#app');

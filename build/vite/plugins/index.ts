@@ -2,8 +2,8 @@ import { PluginOption } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import legacy from '@vitejs/plugin-legacy';
-import VueSetupExtend from 'vite-plugin-vue-setup-extend';
-import EslintPlugin from 'vite-plugin-eslint';
+import vueSetupExtend from 'unplugin-vue-setup-extend-plus/vite';
+import eslintPlugin from 'vite-plugin-eslint';
 import { configHtmlPlugin } from './html';
 import { configVisualizerPlugin } from './visualizer';
 import { configSvgPlugin } from './svg';
@@ -16,8 +16,8 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
 	const vitePlugins: (PluginOption | PluginOption[])[] = [
 		vue(), // *vue 必须
 		vueJsx(), // * vite 可以使用 jsx/tsx 语法
-		VueSetupExtend(), // * name 可以写在 setup script 标签上
-		EslintPlugin() // *EsLint 报错信息显示在浏览器界面上
+		vueSetupExtend({}), // * name 可以写在 setup script 标签上
+		eslintPlugin() // *EsLint 报错信息显示在浏览器界面上
 	];
 
 	// @vitejs/plugin-legacy

@@ -1,11 +1,5 @@
 <template>
-	<el-switch
-		v-model="appStore.themeConfig.isDark"
-		inline-prompt
-		:active-icon="Sunny"
-		:inactive-icon="Moon"
-		@change="switchDark"
-	/>
+	<el-switch v-model="appStore.isDark" inline-prompt :active-icon="Sunny" :inactive-icon="Moon" @change="switchDark" />
 </template>
 
 <script lang="ts" setup name="SwitchDark">

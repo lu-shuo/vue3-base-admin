@@ -1,6 +1,7 @@
 // * 持久化
 import { defineStore } from 'pinia';
 import { TabsState, TabMenu } from '../interface';
+import router from '@/routers';
 import piniaPersistConfig from '@/config/piniaPersist';
 
 export const useTabsStore = defineStore('tabs', {
@@ -25,6 +26,7 @@ export const useTabsStore = defineStore('tabs', {
 						const nextTab = tabs[index + 1] || tabs[index - 1];
 						if (nextTab) {
 							this.currentTabPath = nextTab.path;
+							router.push(this.currentTabPath);
 						}
 					}
 				});
@@ -36,7 +38,7 @@ export const useTabsStore = defineStore('tabs', {
 		},
 		closeAllTab() {
 			this.tabsMenuList = this.tabsMenuList.filter(tab => !tab.closable);
-			this.currentTabPath = this.tabsMenuList[0].path;
+			this.currentTabPath = this.tabsMenuList.length ? this.tabsMenuList[0].path : '';
 		}
 	},
 	persist: piniaPersistConfig('TabState')
