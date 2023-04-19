@@ -1,5 +1,4 @@
-import { onBeforeUnmount, onActivated, onDeactivated } from 'vue';
-import { useDebounceFn } from '@vueuse/core';
+import { onActivated, onDeactivated, onBeforeUnmount } from 'vue';
 import * as echarts from 'echarts';
 
 /**

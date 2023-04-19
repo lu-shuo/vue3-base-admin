@@ -8,17 +8,13 @@ import { asideTheme, AsideThemeType } from '@/styles/theme/aside';
 export const useTheme = () => {
 	const appStore = useAppStore();
 	const { primary, isDark, isGrey, isWeak, asideInverted, layout } = storeToRefs(appStore);
-	// const themeConfig = appStore.themeConfig;
 
 	const switchDark = () => {
 		// documentElement 属性以一个元素对象返回一个文档的文档元素。
 		// HTML 文档返回对象为HTML元素。
 		const root = document.documentElement as HTMLElement;
-		if (isDark.value) {
-			root.setAttribute('class', 'dark');
-		} else {
-			root.setAttribute('class', '');
-		}
+		if (isDark.value) root.setAttribute('class', 'dark');
+		else root.setAttribute('class', '');
 		changePrimary(primary.value);
 		setAsideTheme();
 	};
