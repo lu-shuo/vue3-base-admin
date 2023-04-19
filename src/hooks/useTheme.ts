@@ -18,9 +18,9 @@ export const useTheme = () => {
 			root.setAttribute('class', 'dark');
 		} else {
 			root.setAttribute('class', '');
-			changePrimary(primary.value);
-			setAsideTheme();
 		}
+		changePrimary(primary.value);
+		setAsideTheme();
 	};
 
 	// 修改主题颜色
