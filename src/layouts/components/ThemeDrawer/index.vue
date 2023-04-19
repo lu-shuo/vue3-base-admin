@@ -79,10 +79,10 @@
 		</div>
 		<div class="theme-item mb40">
 			<span>
-				侧边栏反转色
-				<el-tooltip effect="dark" content="该属性目前只在纵向布局模式下生效" placement="top">
+				{{ $t('themeDrawer.reverseSidebarColor') }}
+				<!-- <el-tooltip effect="dark" content="该属性目前只在纵向布局模式下生效" placement="top">
 					<el-icon><QuestionFilled /></el-icon>
-				</el-tooltip>
+				</el-tooltip> -->
 			</span>
 			<el-switch v-model="asideInverted" :disabled="layout !== 'vertical'" @change="setAsideTheme" />
 		</div>
@@ -97,23 +97,23 @@
 			<el-switch v-model="isCollapse" />
 		</div>
 		<div class="theme-item">
-			<span>面包屑</span>
+			<span>{{ $t('themeDrawer.breadcrumb') }}</span>
 			<el-switch v-model="breadcrumb" />
 		</div>
 		<div class="theme-item">
-			<span>面包屑图标</span>
+			<span>{{ $t('themeDrawer.breadcrumbIcon') }}</span>
 			<el-switch v-model="breadcrumbIcon" />
 		</div>
 		<div class="theme-item">
-			<span>标签栏</span>
+			<span>{{ $t('themeDrawer.tab') }}</span>
 			<el-switch v-model="tabs" />
 		</div>
 		<div class="theme-item">
-			<span>标签栏图标</span>
+			<span>{{ $t('themeDrawer.tabIcon') }}</span>
 			<el-switch v-model="tabsIcon" />
 		</div>
 		<div class="theme-item">
-			<span>页脚</span>
+			<span>{{ $t('themeDrawer.footer') }}</span>
 			<el-switch v-model="footer" />
 		</div>
 	</el-drawer>
@@ -155,7 +155,7 @@ const { layout, primary, isGrey, isWeak, asideInverted, isCollapse, breadcrumb, 
 
 // 打开主题设置
 const drawerVisible = ref(false);
-mittBus.on('openThemeDrawer', () => {
+mittBus.on('OPEN_THEME_DRAWER', () => {
 	drawerVisible.value = true;
 });
 </script>

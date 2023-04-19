@@ -28,7 +28,13 @@ export default {
 		darkMode: 'Dark Mode',
 		greyMode: 'Grey mode',
 		weakMode: 'Weak mode',
+		reverseSidebarColor: 'Reverse Sidebar Color',
 		interfaceSettings: 'Interface',
-		isCollapse: 'Collapse Menu'
+		isCollapse: 'Collapse Menu',
+		breadcrumb: 'Breadcrumb',
+		breadcrumbIcon: 'Breadcrumb Icon',
+		tab: 'Tab',
+		tabIcon: 'Tab Icon',
+		footer: 'Footer'
 	}
 };

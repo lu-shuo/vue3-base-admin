@@ -27,7 +27,13 @@ export default {
 		darkMode: '暗黑模式',
 		greyMode: '灰色模式',
 		weakMode: '色弱模式',
+		reverseSidebarColor: '侧边栏反转色',
 		interfaceSettings: '界面设置',
-		isCollapse: '折叠菜单'
+		isCollapse: '折叠菜单',
+		breadcrumb: '面包屑',
+		breadcrumbIcon: '面包屑图标',
+		tab: '标签栏',
+		tabIcon: '标签栏图标',
+		footer: '页脚'
 	}
 };

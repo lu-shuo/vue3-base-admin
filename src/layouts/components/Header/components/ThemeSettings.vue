@@ -7,6 +7,6 @@
 <script setup lang="ts" name="ThemeSetting">
 import mittBus from '@/utils/mittBus';
 const openDrawer = () => {
-	mittBus.emit('openThemeDrawer');
+	mittBus.emit('OPEN_THEME_DRAWER');
 };
 </script>
