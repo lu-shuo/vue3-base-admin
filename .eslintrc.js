@@ -71,7 +71,7 @@ module.exports = {
 		'no-undef': 0, // 禁用未声明的变量，除非它们在 /*global */ 注释中被提到
 		'no-debugger': isDev ? 0 : 2, // 生产模式禁止使用debugger
 		'no-unreachable': 2, // 禁止在 return、throw、continue 和 break 语句之后出现不可达代码
-
+		'no-eval': 0,
 		// typeScript (https://typescript-eslint.io/rules)
 		'@typescript-eslint/no-unused-vars': 'error', // 禁止定义未使用的变量
 		'@typescript-eslint/no-inferrable-types': 'off', // 可以轻松推断的显式类型可能会增加不必要的冗长
