@@ -7,14 +7,14 @@ export namespace Confirm {
 }
 
 export namespace Table {
-	interface ApiDataKeyMap {
+	export interface ApiDataKeyMap {
 		tableData: string;
 		pageNo: string;
 		pageSize: string;
 		total: string;
 	}
 
-	interface PageParamsKeyMap {
+	export interface PageParamsKeyMap {
 		pageNo: string;
 		pageSize: string;
 	}

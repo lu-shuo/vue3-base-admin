@@ -2,7 +2,7 @@ import router from '@/routers/index';
 import { useUserStore } from '@/stores/modules/user';
 import { useAuthStore } from '@/stores/modules/auth';
 import { LOGIN_URL } from '@/config/router';
-import { getType } from '@/utils/utils';
+import { getType } from '@/utils';
 
 // 引入 views 文件夹下所有 vue 文件
 const modules = import.meta.glob('@/views/**/*.vue');

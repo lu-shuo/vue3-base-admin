@@ -8,7 +8,7 @@
 import { useI18n } from 'vue-i18n';
 import { useTheme } from '@/hooks/useTheme';
 import { useAppStore } from '@/stores/modules/app';
-import { getBrowserLang } from '@/utils/utils';
+import { getBrowserLang } from '@/utils';
 import en from 'element-plus/es/locale/lang/en';
 import zhCn from 'element-plus/es/locale/lang/zh-cn';
 

@@ -30,7 +30,7 @@ import { useUserStore } from '@/stores/modules/user';
 import { useTabsStore } from '@/stores/modules/tabs';
 import { useKeepAliveStore } from '@/stores/modules/keepAlive';
 import { HOME_URL } from '@/config/router';
-import { getTimeState } from '@/utils/utils';
+import { getTimeState } from '@/utils';
 import { CircleClose, UserFilled } from '@element-plus/icons-vue';
 import { initDynamicRouter } from '@/routers/modules/dynamicRoutes';
 import md5 from 'js-md5';
