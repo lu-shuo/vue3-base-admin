@@ -26,7 +26,7 @@ export namespace Table {
 		pageParamsKeyMap?: PageParamsKeyMap;
 		filterEmptyParams?: boolean;
 		handleSearchParams?: (data: Recordable) => void;
-		tableDataCallback?: (data: any) => any;
+		dataCallback?: (data: any) => any;
 		initOnMount?: boolean;
 	}
 	export interface PageParams {

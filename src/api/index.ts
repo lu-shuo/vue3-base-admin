@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
 import { ResponseCode, Result } from './interface/index';
 import { showFullScreenLoading, tryHideFullScreenLoading } from '@/config/serviceLoading';
-import { TIMEOUT } from '@/config/axios';
+import { TIMEOUT } from '@/config/service';
 import { LOGIN_URL } from '@/config/router';
 import { checkHttpStatus } from './helper/checkHttpStatus';
 import { useUserStore } from '@/stores/modules/user';
@@ -95,6 +95,9 @@ class HttpRequest {
 	}
 	delete<T>(url: string, params?: any, _object = {}): Promise<Result<T>> {
 		return this.service.delete(url, { params, ..._object });
+	}
+	download(url: string, params?: object, _object = {}): Promise<BlobPart> {
+		return this.service.post(url, params, { ..._object, responseType: 'blob' });
 	}
 }
 

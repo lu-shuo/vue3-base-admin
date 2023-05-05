@@ -9,7 +9,7 @@ export const useSelection = (key: string, tableRef?: any) => {
 
 	const selectedList = ref([]);
 
-	const selectedIds = computed((): string | number[] => {
+	const selectedIds = computed((): string[] | number[] => {
 		return selectedList.value.map(item => item[key]);
 	});
 

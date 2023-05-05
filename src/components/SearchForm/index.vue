@@ -1,7 +1,7 @@
 <template>
 	<div class="card table-search" v-if="columns.length">
 		<el-form ref="formRef" :model="searchParams">
-			<Grid ref="gridRef" :collapsed="collapsed" :gap="[20, 0]" :cols="searchCol">
+			<Grid ref="gridRef" :collapsed="collapsed" :gap="[0, 20]" :cols="searchCol">
 				<GridItem v-for="(item, index) in columns" :key="item.prop" v-bind="getResponsive(item)" :index="index">
 					<el-form-item :label="`${item.label} :`">
 						<SearchFormItem :column="item" :search-params="searchParams" />

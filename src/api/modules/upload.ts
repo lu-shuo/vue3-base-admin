@@ -1,6 +1,6 @@
 import http from '@/api';
 import { Upload } from '@/api/models/upload';
-import { PORT1 } from '@/config/axios';
+import { PORT1 } from '@/config/service';
 
 /**
  * @name 文件上传模块

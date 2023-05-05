@@ -92,8 +92,8 @@
 		</div>
 		<script>
 			if (window.localStorage.getItem('AppState')) {
-				const color = JSON.parse(window.localStorage.getItem('AppState')).themeConfig.primary;
-				const isDark = JSON.parse(window.localStorage.getItem('AppState')).themeConfig.isDark;
+				const color = JSON.parse(window.localStorage.getItem('AppState')).primary;
+				const isDark = JSON.parse(window.localStorage.getItem('AppState')).isDark;
 				const dot = document.querySelectorAll('.dot i');
 				const html = document.querySelector('html');
 				dot.forEach(item => (item.style.background = color));

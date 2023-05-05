@@ -1,14 +1,14 @@
 /*
  * @Author: lushuo
  * @Date: 2023-02-28 22:19:20
- * @LastEditTime: 2023-02-28 22:37:11
+ * @LastEditTime: 2023-05-02 18:50:04
  * @LastEditors: lushuo
  * @Description: hooks和组件按需自动导入
  * @FilePath: \vue3-base-admin\build\vite\plugins\autoImport.ts
  */
 import type { PluginOption } from 'vite';
-import Components from 'unplugin-vue-components/vite';
 import AutoImport from 'unplugin-auto-import/vite';
+import Components from 'unplugin-vue-components/vite';
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 
 export function configAutoImport() {

@@ -24,7 +24,7 @@ export const useTable = <T>({
 	},
 	filterEmptyParams = false, // 过滤空参
 	handleSearchParams, // 查询前处理查询参数
-	tableDataCallback, // 处理接口返回数据
+	dataCallback, // 处理接口返回数据
 	initOnMount = true // Mount是否自动拉取表格数据
 }: Table.UseTableParams) => {
 	const state = reactive<Table.TableStateProps<T>>({
@@ -99,7 +99,7 @@ export const useTable = <T>({
 			if (res.code === ResponseCode.SUCCESS) {
 				const data = res.data;
 				let tableDate = pageable ? data[apiDataKeyMap.tableData] : data;
-				tableDataCallback && (tableDate = tableDataCallback(tableDate));
+				dataCallback && (tableDate = dataCallback(tableDate));
 				state.tableData = tableDate;
 				pageable &&
 					updatePageParams({

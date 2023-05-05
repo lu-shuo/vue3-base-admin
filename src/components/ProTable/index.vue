@@ -25,7 +25,14 @@
 			</div>
 		</div>
 		<!-- 表格主体 -->
-		<el-table ref="tableRef" v-bind="$attrs" :data="tableData" :row-key="getRowKey" @selection-change="handleSelectionChange">
+		<el-table
+			ref="tableRef"
+			v-bind="$attrs"
+			v-loading="loading"
+			:data="tableData"
+			:row-key="getRowKey"
+			@selection-change="handleSelectionChange"
+		>
 			<!-- 默认插槽 -->
 			<slot></slot>
 			<template v-for="item in tableColumns" :key="item">
@@ -40,11 +47,9 @@
 				</el-table-column>
 				<!-- expand -->
 				<!-- expand	通过设置 type="expand" 和 slot 可以开启展开行功能， el-table-column 的模板会被渲染成为展开行的内容，展开行可访问的属性与使用自定义列模板时的 slot 相同。 -->
-				<el-table-column v-if="item.type === 'expand'" v-bind="item" :align="item.align ?? 'center'">
-					<template #default="scope">
-						<component v-if="item.render" :is="item.render" v-bind="scope"></component>
-						<slot v-else :name="item.type" v-bind="scope"></slot>
-					</template>
+				<el-table-column v-if="item.type === 'expand'" v-bind="item" :align="item.align ?? 'center'" v-slot="scope">
+					<component v-if="item.render" :is="item.render" v-bind="scope"></component>
+					<slot v-else :name="item.type" v-bind="scope"></slot>
 				</el-table-column>
 				<!-- other 循环递归 -->
 				<TableColumn v-if="!item.type && item.prop && item.isShow" :column="item">
@@ -102,9 +107,8 @@ interface ProTableProps extends Partial<Omit<TableProps<any>, 'data'>> {
 	pageable?: boolean; // 是否需要分页组件 ==> 非必传（默认为true）
 	pageParamsKeyMap?: Table.PageParamsKeyMap; // 分页字段映射 ==> 非必传（默认为{}）
 	initParams?: any; // 初始请求参数 ==> 非必传（默认为{}）
-	handleSearchParams?: (params: any) => void; // 查询前处理请求参数 ==> 非必传
 	filterEmptyParams?: boolean; // 过滤掉请求参数中的null,undefined,''，不包括false或0 ==> 非必传（默认为false）
-	tableDataCallback?: (data: any) => any; // 返回数据的回调函数，可以对数据进行处理 ==> 非必传
+	dataCallback?: (data: any) => any; // 返回数据的回调函数，可以对数据进行处理 ==> 非必传
 	rowKey?: string; // 行数据的 Key，用来优化 Table 的渲染，当表格数据多选时，所指定的 id ==> 非必传（默认为 id）
 	toolButton?: boolean; // 是否显示表格功能按钮 ==> 非必传（默认为true）
 	searchCol?: number | Record<BreakPoint, number>; // 表格搜索项 每列占比配置 ==> 非必传 { xs: 1, sm: 2, md: 2, lg: 3, xl: 4 }
@@ -135,6 +139,38 @@ const props = withDefaults(defineProps<ProTableProps>(), {
 
 // * 是否显示搜索模块
 const isShowSearch = ref(true);
+
+// * 表格hooks
+const tableRef = ref<InstanceType<typeof ElTable>>();
+
+const {
+	tableData,
+	pageParams,
+	searchParams,
+	initSearchParams,
+	loading,
+	search,
+	reset,
+	getTableList,
+	handleCurrentChange,
+	handleSizeChange
+} = useTable({
+	api: props.api,
+	apiDataKeyMap: props.apiDataKeyMap,
+	initParams: props.initParams,
+	dataCallback: props.dataCallback,
+	pageable: props.pageable,
+	initOnMount: props.requestOnMount
+});
+
+// * 监听页面 initParam 改化，重新获取表格数据
+watch(() => props.initParams, getTableList, { deep: true });
+
+// * 表格多选 Hooks
+const { selectedIds, selectedList, isSelected, getRowKey, handleSelectionChange, toggleRowsSelection } = useSelection(
+	props.rowKey,
+	tableRef
+);
 
 // * 接收 columns 并设置为响应式
 const tableColumns = ref<ColumnProps[]>(props.columns);
@@ -190,38 +226,6 @@ const colSetting = tableColumns.value!.filter(
 );
 const openColSetting = () => colRef.value.openColSetting();
 
-// * 表格hooks
-const tableRef = ref<InstanceType<typeof ElTable>>();
-
-const {
-	tableData,
-	pageParams,
-	searchParams,
-	initSearchParams,
-	search,
-	reset,
-	getTableList,
-	handleCurrentChange,
-	handleSizeChange
-} = useTable({
-	api: props.api,
-	apiDataKeyMap: props.apiDataKeyMap,
-	initParams: props.initParams,
-	handleSearchParams: props.handleSearchParams,
-	tableDataCallback: props.tableDataCallback,
-	pageable: props.pageable,
-	initOnMount: props.requestOnMount
-});
-
-// * 监听页面 initParam 改化，重新获取表格数据
-watch(() => props.initParams, getTableList, { deep: true });
-
-// * 表格多选 Hooks
-const { selectedIds, selectedList, isSelected, getRowKey, handleSelectionChange, toggleRowsSelection } = useSelection(
-	props.rowKey,
-	tableRef
-);
-
 // * 设置查询参数默认值
 const setInitSearchParams = (params: any) => {
 	for (const key in params) initSearchParams.value[key] = params[key];
@@ -238,13 +242,15 @@ defineExpose({
 	selectedList,
 	isSelected,
 	setInitSearchParams,
+	search,
 	reset,
+	getTableList,
 	toggleRowsSelection,
 	clearSelection
 });
 </script>
 
-<script>
+<script lang="ts">
 export default {
 	inheritAttrs: false // 禁用 attribute 自动继承在在根节点
 };

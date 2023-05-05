@@ -13,7 +13,7 @@ type Props = {
 	cols?: number | Record<BreakPoint, number>; // 列数
 	collapsed?: boolean; // 是否折叠
 	collapsedRows?: number; // 显示几行
-	gap?: [number, number] | number; // [列间隔，行间隔] 与gap属性保持顺序一致
+	gap?: [number, number] | number; // [行间隔，列间隔] 与gap属性保持顺序一致
 };
 
 const props = withDefaults(defineProps<Props>(), {
@@ -21,6 +21,22 @@ const props = withDefaults(defineProps<Props>(), {
 	collapsed: false,
 	collapsedRows: 1,
 	gap: 0
+});
+
+onBeforeMount(() => props.collapsed && findIndex());
+onMounted(() => {
+	resize({ target: { innerWidth: window.innerWidth } } as any);
+	window.addEventListener('resize', useDebounceFn(resize, 100));
+});
+onActivated(() => {
+	resize({ target: { innerWidth: window.innerWidth } } as any);
+	window.addEventListener('resize', useDebounceFn(resize, 100));
+});
+onUnmounted(() => {
+	window.removeEventListener('resize', resize);
+});
+onDeactivated(() => {
+	window.removeEventListener('resize', resize);
 });
 
 // 注入响应式断点
@@ -48,20 +64,9 @@ const resize = (e: UIEvent) => {
 			break;
 	}
 };
-onMounted(() => {
-	resize({ target: { innerWidth: window.innerWidth } } as any);
-	window.addEventListener('resize', useDebounceFn(resize, 100));
-});
-onActivated(() => {
-	resize({ target: { innerWidth: window.innerWidth } } as any);
-	window.addEventListener('resize', useDebounceFn(resize, 100));
-});
-onUnmounted(() => {
-	window.removeEventListener('resize', resize);
-});
-onDeactivated(() => {
-	window.removeEventListener('resize', resize);
-});
+
+// 注入列间距给GridItem
+provide('gap', Array.isArray(props.gap) ? props.gap[1] : props.gap);
 
 // 注入 cols
 const cols = computed(() => {
@@ -91,6 +96,7 @@ const findIndex = () => {
 	// 计算 suffix 所占用的列
 	let suffixCols = 0;
 	if (suffix) {
+		console.log('🚀 ~ file: index.vue:94 ~ findIndex ~ suffix:', suffix);
 		suffixCols =
 			(suffix.props![breakPoint.value]?.span ?? suffix.props?.span ?? 1) +
 			(suffix.props![breakPoint.value]?.offset ?? suffix.props?.offset ?? 0);
@@ -130,9 +136,6 @@ watch(
 		hiddenIndex.value = -1;
 	}
 );
-
-// 注入行间距给GridItem
-provide('gap', Array.isArray(props.gap) ? props.gap[1] : props.gap);
 
 // 设置间距
 const gap = computed(() => {

@@ -1,9 +1,11 @@
 <template>
-	<component
+	<!-- TODO:https://github.com/antfu/unplugin-vue-components/issues/556 -->
+	<!-- auto import 无法识别动态组件 -->
+	<!-- <component
 		v-if="column.search?.el"
-		:is="`el-${column.search.el}`"
 		v-bind="{ ...handleSearchProps, ...placeholder }"
 		v-model.trim="searchParams[column.search.key ?? handleProp(column.prop!)]"
+		:is="`el-${column.search.el}`"
 		:data="column.search?.el === 'tree-select' ? columnEnum : []"
 		:options="['cascader', 'select-v2'].includes(column.search?.el) ? columnEnum : []"
 		:clearable="clearable"
@@ -21,7 +23,106 @@
 			></component>
 		</template>
 		<slot v-else></slot>
-	</component>
+	</component> -->
+	<template v-if="column.search?.el">
+		<el-input
+			v-if="column.search.el === 'input'"
+			v-bind="{ ...handleSearchProps, ...placeholder }"
+			v-model.trim="searchParams[column.search.key ?? handleProp(column.prop!)]"
+			:clearable="clearable"
+		>
+			<slot />
+		</el-input>
+		<el-input-number
+			v-if="column.search.el === 'input-number'"
+			v-bind="{ ...handleSearchProps, ...placeholder }"
+			v-model.trim="searchParams[column.search.key ?? handleProp(column.prop!)]"
+			:clearable="clearable"
+		>
+			<slot />
+		</el-input-number>
+		<el-select
+			v-if="column.search.el === 'select'"
+			v-bind="{ ...handleSearchProps, ...placeholder }"
+			v-model.trim="searchParams[column.search.key ?? handleProp(column.prop!)]"
+			:clearable="clearable"
+		>
+			<el-option
+				v-for="(col, index) in columnEnum"
+				:key="index"
+				:label="col[fieldNames.label]"
+				:value="col[fieldNames.value]"
+			></el-option>
+		</el-select>
+		<el-select-v2
+			v-if="column.search.el === 'select-v2'"
+			v-bind="{ ...handleSearchProps, ...placeholder }"
+			v-model.trim="searchParams[column.search.key ?? handleProp(column.prop!)]"
+			:clearable="clearable"
+			:options="columnEnum"
+		>
+			<slot />
+		</el-select-v2>
+		<el-tree-select
+			v-if="column.search.el === 'tree-select'"
+			v-bind="{ ...handleSearchProps, ...placeholder }"
+			v-model.trim="searchParams[column.search.key ?? handleProp(column.prop!)]"
+			:clearable="clearable"
+		>
+			<slot />
+		</el-tree-select>
+		<el-cascader
+			v-if="column.search.el === 'cascader'"
+			v-bind="{ ...handleSearchProps, ...placeholder }"
+			v-model.trim="searchParams[column.search.key ?? handleProp(column.prop!)]"
+			:clearable="clearable"
+			:options="columnEnum"
+		>
+			<template #default="{ data }">
+				<span>{{ data[fieldNames.label] }}</span>
+			</template>
+		</el-cascader>
+		<el-date-picker
+			v-if="column.search.el === 'date-picker'"
+			v-bind="{ ...handleSearchProps, ...placeholder }"
+			v-model.trim="searchParams[column.search.key ?? handleProp(column.prop!)]"
+			:clearable="clearable"
+		>
+			<slot />
+		</el-date-picker>
+		<el-time-picker
+			v-if="column.search.el === 'time-picker'"
+			v-bind="{ ...handleSearchProps, ...placeholder }"
+			v-model.trim="searchParams[column.search.key ?? handleProp(column.prop!)]"
+			:clearable="clearable"
+		>
+			<slot />
+		</el-time-picker>
+		<el-time-select
+			v-if="column.search.el === 'time-select'"
+			v-bind="{ ...handleSearchProps, ...placeholder }"
+			v-model.trim="searchParams[column.search.key ?? handleProp(column.prop!)]"
+			:clearable="clearable"
+		>
+			<slot />
+		</el-time-select>
+		<el-switch
+			v-if="column.search.el === 'switch'"
+			v-bind="{ ...handleSearchProps, ...placeholder }"
+			v-model.trim="searchParams[column.search.key ?? handleProp(column.prop!)]"
+			:clearable="clearable"
+		>
+			<slot />
+		</el-switch>
+		<el-slider
+			v-if="column.search.el === 'slider'"
+			v-bind="{ ...handleSearchProps, ...placeholder }"
+			v-model.trim="searchParams[column.search.key ?? handleProp(column.prop!)]"
+			:clearable="clearable"
+		>
+			<slot />
+		</el-slider>
+	</template>
 </template>
 
 <script setup lang="ts" name="SearchFormItem">
