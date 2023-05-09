@@ -3,7 +3,7 @@
 	.tabs-menu {
 		position: relative;
 		width: 100%;
-		.el-dropdown {
+		.more-drop {
 			position: absolute;
 			top: 8px;
 			right: 13px;
@@ -26,12 +26,20 @@
 							justify-content: center;
 							color: #afafaf;
 							border: none;
-							.tabs-icon {
-								margin: 1.5px 4px 0 0;
-								font-size: 15px;
-							}
-							.is-icon-close {
-								margin-top: 1px;
+							.el-dropdown {
+								height: 100%;
+								.tab-dropdowns__item {
+									display: flex;
+									align-items: center;
+									justify-content: center;
+									.tabs-icon {
+										margin: 0 5px 1px 0;
+										font-size: 15px;
+									}
+									.is-icon-close {
+										margin-top: 1px;
+									}
+								}
 							}
 							&.is-active {
 								color: var(--el-color-primary);

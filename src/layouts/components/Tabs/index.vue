@@ -10,14 +10,31 @@
 					:closable="item.closable"
 				>
 					<template #label>
-						<el-icon class="tabs-icon" v-show="item.icon && tabsIcon">
-							<component :is="item.icon"></component>
-						</el-icon>
-						{{ item.title }}
+						<el-dropdown trigger="contextmenu" placement="bottom-start">
+							<span class="tab-dropdowns__item">
+								<el-icon class="tabs-icon" v-show="item.icon && tabsIcon">
+									<component :is="item.icon"></component>
+								</el-icon>
+								{{ item.title }}
+							</span>
+							<template #dropdown>
+								<el-dropdown-menu>
+									<el-dropdown-item @click="moreBtnRef?.closeCurrentTab" v-if="item.closable">
+										<el-icon><Remove /></el-icon>{{ $t('tabs.closeCurrent') }}
+									</el-dropdown-item>
+									<el-dropdown-item @click="moreBtnRef?.closeOtherTab">
+										<el-icon><CircleClose /></el-icon>{{ $t('tabs.closeOther') }}
+									</el-dropdown-item>
+									<el-dropdown-item @click="moreBtnRef?.closeAllTab">
+										<el-icon><FolderDelete /></el-icon>{{ $t('tabs.closeAll') }}
+									</el-dropdown-item>
+								</el-dropdown-menu>
+							</template>
+						</el-dropdown>
 					</template>
 				</el-tab-pane>
 			</el-tabs>
-			<MoreButton />
+			<MoreButton ref="moreBtnRef" />
 		</div>
 	</div>
 </template>
@@ -30,6 +47,8 @@ import { useKeepAliveStore } from '@/stores/modules/keepAlive';
 import { TabsPaneContext, TabPaneName } from 'element-plus';
 import Sortable from 'sortablejs';
 import MoreButton from './components/MoreButton.vue';
+
+const moreBtnRef = ref();
 
 const router = useRouter();
 const route = useRoute();

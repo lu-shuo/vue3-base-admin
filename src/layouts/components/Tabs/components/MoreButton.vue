@@ -1,5 +1,5 @@
 <template>
-	<el-dropdown trigger="click" :teleported="false">
+	<el-dropdown trigger="click" :teleported="false" class="more-drop">
 		<el-button size="small" type="primary">
 			<span>{{ $t('tabs.more') }}</span>
 			<el-icon class="el-icon--right"><arrow-down /></el-icon>
@@ -75,6 +75,12 @@ const closeAllTab = () => {
 	keepAliveStore.setKeepAliveName();
 	router.push(HOME_URL);
 };
+
+defineExpose({
+	closeCurrentTab,
+	closeOtherTab,
+	closeAllTab
+});
 </script>
 
 <style scoped lang="scss">
